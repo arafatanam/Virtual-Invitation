@@ -22,6 +22,7 @@ The invitations are in two collections:
 | 09 | Jewel Box (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/09-jewel-box/) | A burgundy velvet box opens to a music-box melody. A faceted diamond ring rises from the satin, and each celebration swaps the stone (citrine, diamond, ruby, emerald, sapphire). |
 | 10 | Gold Foil (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/10-gold-foil/) | A luxury stationery suite. Break the gold seal and the card slides out of an emerald envelope. The gold foil catches the light as you tilt your phone, and the remaining cards are dealt out as you scroll. |
 | 11 | Royal Peacock (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/11-peacock/) | A Mughal peacock fan of iridescent 3D feathers sweeps open around a gold monogram medallion. Tap it and the peacock rattles its train. |
+| H&T | Hamza & Tahia | [open](https://arafatanam.github.io/Virtual-Invitation/desi/h%26t/) | A made-to-order invitation for three events in one. Ivory curtains part on tap, and as guests scroll the stage re-dresses itself for each event: blush and sage drapes with brass lanterns for the Holud, burgundy velvet under a crystal chandelier for the Reception, and ivory sheers with fairy lights for the Walima. |
 
 ## Western collection
 
@@ -63,6 +64,8 @@ All names, dates and venues are placeholders.
   - desi/08 — `buildMask()`
   - desi/09 — the `lining` canvas
   - desi/11 — `faceTex`
+
+desi/h&t has no RSVP form; its countdown is set to the Holud.
 
 ## RSVP
 
