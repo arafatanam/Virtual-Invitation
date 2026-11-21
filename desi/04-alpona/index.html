@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0716">
+<title>Sadia &amp; Rafsan · Alpona</title>
+<meta name="description" content="Sadia & Rafsan — a wedding of lanterns and alpona, 9–12 December 2027, Sylhet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Laila:wght@400;600;700&family=Tiro+Bangla&family=Amiri&family=Mukta:wght@300;400;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<canvas id="sparks" aria-hidden="true"></canvas>
+<div class="shade" aria-hidden="true"></div>
+
+<div class="gate" id="gate">
+  <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+  <p class="deva">শুভ বিবাহ</p>
+  <h1>Sadia <span>&amp;</span> Rafsan</h1>
+  <p class="kicker">Alpona &amp; lanterns · Sylhet</p>
+  <button class="cta" id="open"><span>Light the lanterns</span></button>
+  <p class="hint">Sound on · draw with your finger for sparklers</p>
+</div>
+
+<main>
+  <header class="stop hero" data-pattern="0">
+    <div class="copy">
+      <p class="deva">শুভ বিবাহ</p>
+      <h2 class="names">Sadia <i>&amp;</i> Rafsan</h2>
+      <p>are getting married, in sha Allah, among the tea gardens of Sylhet, and we would love every one of you there.</p>
+      <p class="cue">Tap a lantern · scroll for the celebrations</p>
+    </div>
+  </header>
+
+  <section class="stop" data-pattern="1"><article class="copy ev" style="--c:#ff5fa2">
+    <p class="deva">মেহেদি সন্ধ্যা</p><h3>Mehedi Shondha</h3><p class="when">Thursday 9 December · 7 pm</p>
+    <p>Henna, songs and the cousins’ secret performance.</p>
+    <p class="where">Garden Terrace, Sylhet</p>
+  </article></section>
+
+  <section class="stop" data-pattern="2"><article class="copy ev" style="--c:#ffc233">
+    <p class="deva">গায়ে হলুদ</p><h3>Gaye Holud</h3><p class="when">Friday 10 December · 4 pm</p>
+    <p>A courtyard painted with alpona, marigolds everywhere and turmeric for everyone.</p>
+    <p class="where">Tea Estate Bungalow, Srimangal</p>
+  </article></section>
+
+  <section class="stop" data-pattern="3"><article class="copy ev" style="--c:#ff7a33">
+    <p class="deva">আকদ ও বিয়ে</p><h3>Akdh &amp; Biye</h3><p class="when">Saturday 11 December · from 5 pm</p>
+    <p>The nikah after Asr, then the reception under a thousand lanterns.</p>
+    <p class="where">Grand Sultan Lawns, Sylhet</p>
+  </article></section>
+
+  <section class="stop" data-pattern="4"><div class="copy">
+    <p class="kicker">The biye begins in</p>
+    <div class="count">
+      <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hrs</span></div><div><b id="cd-m">00</b><span>min</span></div><div><b id="cd-s">00</b><span>sec</span></div>
+    </div>
+    <p>Walima on Sunday 12 December, 8 pm, hosted by Rafsan’s family.</p>
+    <div class="row">
+      <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sadia%20%26%20Rafsan%20%E2%80%94%20Biye&amp;dates=20271211T110000Z/20271211T170000Z&amp;location=Sylhet">Add to calendar</a>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Srimangal%2C%20Sylhet">Open in maps</a>
+    </div>
+  </div></section>
+
+  <section class="stop rsvp-stop" id="rsvp" data-pattern="4"><div class="copy rsvp">
+    <p class="kicker">Kindly reply by 30 September 2027</p>
+    <h2>Will you light a lantern with us?</h2>
+    <form id="form" novalidate>
+      <label for="f-name">Your name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+      <fieldset>
+        <legend>Which events will you attend?</legend>
+        <label class="tick"><input type="checkbox" value="Mehedi" checked><span>Mehedi</span></label>
+        <label class="tick"><input type="checkbox" value="Gaye Holud" checked><span>Gaye Holud</span></label>
+        <label class="tick"><input type="checkbox" value="Akdh & Biye" checked><span>Akdh &amp; Biye</span></label>
+        <label class="tick"><input type="checkbox" value="Walima" checked><span>Walima</span></label>
+      </fieldset>
+      <label for="f-count">Guests</label>
+      <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn big" type="submit">Light my lantern</button>
+    </form>
+    <div class="thanks" aria-live="polite"><p class="deva big">ধন্যবাদ</p><p class="thanks-title">JazakAllah khair!</p><p id="thanks-msg"></p></div>
+  </div></section>
+
+  <footer><p class="names small">Sadia <i>&amp;</i> Rafsan</p><p class="kicker">11 · 12 · 2027 · Sylhet</p></footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2a1e">
+<title>Ayesha &amp; Rehan · Mehedi Raat</title>
+<meta name="description" content="Ayesha & Rehan — Mehedi Raat, Thursday 11 March 2027, Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Kalam:wght@400;700&family=Mukta:wght@300;400;600;700&family=Amiri&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<div class="gate" id="gate">
+  <svg class="gate-mandala" viewBox="-100 -100 200 200" aria-hidden="true"><g id="gateMandala"></g></svg>
+  <p class="kicker">You are invited to our</p>
+  <h1 class="gate-title">Mehedi Raat</h1>
+  <p class="gate-names">Ayesha <span>&amp;</span> Rehan</p>
+  <p class="kicker">Thursday · 11 March 2027 · Dhaka</p>
+  <button class="cta" id="open"><span>Apply the mehndi</span></button>
+  <p class="hint">Sound on for the dholki</p>
+</div>
+
+<div class="lari" id="lari" aria-hidden="true"></div>
+
+<main>
+  <header class="hero">
+    <div class="stage" id="stage">
+      <div class="hand3d" id="hand3d">
+        <svg class="hand" id="hand" viewBox="0 0 400 600" role="img" aria-label="A hand being decorated with mehndi"></svg>
+      </div>
+      <div class="hand-shadow"></div>
+    </div>
+    <p class="status" id="status" aria-live="polite">Applying the mehndi…</p>
+    <button class="chip" id="seek" hidden>Rehan’s name is hidden in the mehndi. Can you find it?</button>
+    <p class="scroll-cue" id="cue">Scroll for the celebrations</p>
+  </header>
+
+  <section class="intro reveal">
+    <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <p class="kicker">With the blessings of our families</p>
+    <h2 class="names">Ayesha <i>&amp;</i> Rehan</h2>
+    <p>invite you to sing, dance and get your hands painted at our mehndi, and to stay with us for every celebration that follows.</p>
+  </section>
+
+  <section class="events">
+    <p class="kicker center">Four nights of celebration</p>
+    <article class="card reveal" style="--c:#f4b740">
+      <svg class="paisley" viewBox="0 0 120 120" aria-hidden="true"><path pathLength="1" d="M60 110c-34 0-46-32-34-56 10-20 34-24 46-12 10 10 6 28-8 28-12 0-14-14-6-18M60 110c26 0 44-18 44-44 0-34-26-56-58-58 10 6 14 16 12 26"/><circle cx="58" cy="70" r="5"/></svg>
+      <p class="day">Saturday · 6 March</p>
+      <h3>Gaye Holud</h3>
+      <p>Yellow saris, marigolds and turmeric for everyone, with the dhol going all evening.</p>
+      <p class="where">5:00 pm · Dhanmondi, Dhaka</p>
+    </article>
+    <article class="card reveal" style="--c:#7bc96f">
+      <svg class="paisley" viewBox="0 0 120 120" aria-hidden="true"><path pathLength="1" d="M60 110c-34 0-46-32-34-56 10-20 34-24 46-12 10 10 6 28-8 28-12 0-14-14-6-18M60 110c26 0 44-18 44-44 0-34-26-56-58-58 10 6 14 16 12 26"/><circle cx="58" cy="70" r="5"/></svg>
+      <p class="day">Thursday · 11 March</p>
+      <h3>Mehedi Raat</h3>
+      <p>Henna artists, a dance-off between the two families, and the bride’s grand entrance under the phoolon ki chadar.</p>
+      <p class="where">8:00 pm · Rooftop Gardens, Gulshan</p>
+    </article>
+    <article class="card reveal" style="--c:#e8456b">
+      <svg class="paisley" viewBox="0 0 120 120" aria-hidden="true"><path pathLength="1" d="M60 110c-34 0-46-32-34-56 10-20 34-24 46-12 10 10 6 28-8 28-12 0-14-14-6-18M60 110c26 0 44-18 44-44 0-34-26-56-58-58 10 6 14 16 12 26"/><circle cx="58" cy="70" r="5"/></svg>
+      <p class="day">Saturday · 13 March</p>
+      <h3>Akdh &amp; Biye</h3>
+      <p>The nikah after Maghrib, gate dhora at the entrance, then the couple on stage.</p>
+      <p class="where">6:00 pm · Senakunja Hall, Dhaka</p>
+    </article>
+    <article class="card reveal" style="--c:#f6e7c8">
+      <svg class="paisley" viewBox="0 0 120 120" aria-hidden="true"><path pathLength="1" d="M60 110c-34 0-46-32-34-56 10-20 34-24 46-12 10 10 6 28-8 28-12 0-14-14-6-18M60 110c26 0 44-18 44-44 0-34-26-56-58-58 10 6 14 16 12 26"/><circle cx="58" cy="70" r="5"/></svg>
+      <p class="day">Sunday · 14 March</p>
+      <h3>Bou-bhat</h3>
+      <p>Our first dinner as a married couple, hosted by Rehan’s family.</p>
+      <p class="where">8:00 pm · InterContinental, Dhaka</p>
+    </article>
+  </section>
+
+  <section class="count-wrap reveal">
+    <p class="kicker">Until the mehndi</p>
+    <div class="count" id="count">
+      <div><b id="cd-d">00</b><span>days</span></div>
+      <div><b id="cd-h">00</b><span>hours</span></div>
+      <div><b id="cd-m">00</b><span>minutes</span></div>
+      <div><b id="cd-s">00</b><span>seconds</span></div>
+    </div>
+    <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ayesha%20%26%20Rehan%20%E2%80%94%20Mehndi&amp;dates=20270311T150000Z/20270311T200000Z&amp;location=Gulshan%2C%20Dhaka">Add to calendar</a>
+  </section>
+
+  <section class="dress reveal">
+    <p class="kicker">Dress code</p>
+    <h2>Greens, yellows &amp; pinks</h2>
+    <div class="swatches"><i style="--s:#2f8f4e"></i><i style="--s:#7bc96f"></i><i style="--s:#f4b740"></i><i style="--s:#f08a24"></i><i style="--s:#e8456b"></i><i style="--s:#b5179e"></i></div>
+    <p>Gota, mirror-work and plenty of churiyan. Bring your dancing shoes for the dance-off.</p>
+    <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gulshan%2C%20Dhaka">Open venue in maps</a>
+  </section>
+
+  <section class="rsvp reveal" id="rsvp">
+    <p class="kicker">Kindly reply by 15 February 2027</p>
+    <h2>Will you be there?</h2>
+    <form id="form" novalidate>
+      <label for="f-name">Your name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+      <fieldset>
+        <legend>Which events can you attend?</legend>
+        <label class="tick"><input type="checkbox" value="Gaye Holud" checked><span>Gaye Holud</span></label>
+        <label class="tick"><input type="checkbox" value="Mehedi" checked><span>Mehedi</span></label>
+        <label class="tick"><input type="checkbox" value="Akdh & Biye" checked><span>Akdh &amp; Biye</span></label>
+        <label class="tick"><input type="checkbox" value="Bou-bhat" checked><span>Bou-bhat</span></label>
+      </fieldset>
+      <label for="f-count">Number of guests</label>
+      <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn big" type="submit">Send my reply</button>
+    </form>
+    <div class="thanks" aria-live="polite">
+      <svg viewBox="0 0 120 110" aria-hidden="true"><path pathLength="1" d="M60 100C20 72 8 52 8 34 8 18 20 8 34 8c12 0 20 8 26 18 6-10 14-18 26-18 14 0 26 10 26 26 0 18-12 38-52 66z"/><path pathLength="1" d="M60 84C34 64 24 50 24 37c0-9 6-15 13-15 9 0 16 8 23 20 7-12 14-20 23-20 7 0 13 6 13 15 0 13-10 27-36 47z"/></svg>
+      <p class="thanks-title">Dhonnobad!</p>
+      <p id="thanks-msg"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="names small">Ayesha <i>&amp;</i> Rehan</p>
+    <p class="kicker">11 · 03 · 2027 · Dhaka</p>
+  </footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

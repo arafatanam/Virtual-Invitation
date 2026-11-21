@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070d24">
+<title>Zara &amp; Ibrahim · Nikah</title>
+<meta name="description" content="Zara & Ibrahim — Nikah, Friday 12 November 2027, Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tiro+Bangla&family=Cinzel:wght@500;700&family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="jaali" aria-hidden="true"></div>
+
+<div class="stage" id="stage">
+  <div class="farman" id="farman">
+    <div class="roller top"><i></i><i></i></div>
+    <div class="sheet" id="sheet">
+      <div class="sheet-inner">
+        <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+        <p class="tiny">In the name of Allah, the Most Gracious, the Most Merciful</p>
+        <div class="star" aria-hidden="true"></div>
+        <p class="small-caps">Together with their families</p>
+        <h1 class="names"><span>Zara</span><em>&amp;</em><span>Ibrahim</span></h1>
+        <p class="urdu" lang="bn">জারা <span>ও</span> ইব্রাহিম</p>
+        <p class="small-caps">request the honour of your presence at their</p>
+        <p class="nikah">Nikah</p>
+        <p class="date">Friday · 12 November 2027<br>after Maghrib</p>
+        <p class="place">Ahsan Pavilion, Old Dhaka</p>
+      </div>
+    </div>
+    <div class="roller bottom" id="bottomRoller"><i></i><i></i></div>
+    <div class="ribbon" id="ribbon" aria-hidden="true"></div>
+    <button class="seal" id="seal" aria-label="Break the seal to open the invitation"><span class="half l"></span><span class="half r"></span><b>Z<small>&amp;</small>I</b></button>
+  </div>
+  <p class="seal-hint" id="sealHint">Tap the seal to open · sound on</p>
+</div>
+
+<main>
+  <div class="spacer" aria-hidden="true"></div>
+
+  <section class="panel">
+    <div class="frame-card">
+      <p class="kicker">The celebrations</p>
+      <div class="ev"><p class="ur" lang="bn">গায়ে হলুদ ও মেহেদি</p><h3>Gaye Holud &amp; Mehedi</h3><p class="when">Wednesday 10 November · 7 pm</p><p>Yellow for the bride, henna for everyone, dholki till the neighbours complain.</p></div>
+      <div class="divider" aria-hidden="true"><span></span></div>
+      <div class="ev"><p class="ur" lang="bn">আকদ</p><h3>Akdh</h3><p class="when">Friday 12 November · after Maghrib</p><p>The nikah in the palace courtyard, followed by dinner under the chandeliers.</p></div>
+      <div class="divider" aria-hidden="true"><span></span></div>
+      <div class="ev"><p class="ur" lang="bn">বিদায়</p><h3>Biday</h3><p class="when">Friday 12 November · late evening</p><p>Bring tissues. Zara leaves her parents’ home with all our duas.</p></div>
+      <div class="divider" aria-hidden="true"><span></span></div>
+      <div class="ev"><p class="ur" lang="bn">ওয়ালিমা</p><h3>Walima</h3><p class="when">Sunday 14 November · 8 pm</p><p>Hosted by Ibrahim’s family at the Pan Pacific Sonargaon.</p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="frame-card center">
+      <p class="kicker">Counting down to the Nikah</p>
+      <div class="count">
+        <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>mins</span></div><div><b id="cd-s">00</b><span>secs</span></div>
+      </div>
+      <div class="row">
+        <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Nikah%20%E2%80%94%20Zara%20%26%20Ibrahim&amp;dates=20271112T123000Z/20271112T170000Z&amp;location=Old%20Dhaka">Add to calendar</a>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Old%20Dhaka">Open in maps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="rsvp">
+    <div class="frame-card rsvp">
+      <p class="kicker">Kindly reply by 10 October 2027</p>
+      <h2>Will you join us?</h2>
+      <form id="form" novalidate>
+        <label for="f-name">Your name</label>
+        <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+        <fieldset>
+          <legend>Which events will you attend?</legend>
+          <label class="tick"><input type="checkbox" value="Gaye Holud & Mehedi" checked><span>Holud &amp; Mehedi</span></label>
+          <label class="tick"><input type="checkbox" value="Akdh" checked><span>Akdh &amp; Biday</span></label>
+          <label class="tick wide"><input type="checkbox" value="Walima" checked><span>Walima</span></label>
+        </fieldset>
+        <label for="f-count">Guests</label>
+        <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn big" type="submit">Send my reply</button>
+      </form>
+      <div class="thanks" aria-live="polite"><p class="ur big" lang="bn">ধন্যবাদ</p><p class="thanks-title">JazakAllah khair</p><p id="thanks-msg"></p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="arabic dua" lang="ar" dir="rtl">بَارَكَ ٱللَّٰهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+    <p class="tiny">May Allah bless you both, shower His blessings upon you, and unite you in goodness.</p>
+    <p class="kicker">Zara &amp; Ibrahim · 12 · 11 · 2027</p>
+  </footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

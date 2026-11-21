@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f26">
+<title>Nusaiba &amp; Tanzim · Woven in Jamdani</title>
+<meta name="description" content="Nusaiba & Tanzim — a wedding woven in jamdani, 16–19 March 2028, Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Amiri&family=Tiro+Bangla&family=Hind+Siliguri:wght@300;400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="cloth" aria-hidden="true"></canvas>
+
+<div class="loom" id="loom">
+  <canvas id="weave" aria-hidden="true"></canvas>
+  <canvas id="shuttle" aria-hidden="true"></canvas>
+  <div class="loom-ui" id="loomUi">
+    <p class="bn">জামদানি</p>
+    <p class="lead">An invitation woven by hand, the way jamdani has been woven on the banks of the Shitalakshya for four hundred years.</p>
+    <button class="cta" id="weaveBtn">Start the loom</button>
+    <p class="hint">Sound on · tap again to weave faster</p>
+  </div>
+</div>
+
+<main>
+  <header class="hero">
+    <div class="panel">
+      <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      <p class="kicker">Woven together by the will of Allah</p>
+      <h1 class="names">Nusaiba <i>&amp;</i> Tanzim</h1>
+      <p>Like the threads of a jamdani, two families are about to become one cloth. We would be honoured to have you there.</p>
+      <p class="cue">Scroll · the sari moves with you</p>
+    </div>
+  </header>
+
+  <section class="events">
+    <article class="panel ev"><p class="bn">মেহেদি সন্ধ্যা</p><h3>Mehedi Shondha</h3><p class="when">Thursday 16 March · 7 pm</p><p>Henna and songs on the rooftop.</p><p class="where">Dhanmondi, Dhaka</p></article>
+    <article class="panel ev"><p class="bn">গায়ে হলুদ</p><h3>Gaye Holud</h3><p class="when">Friday 17 March · 4 pm</p><p>Yellow jamdani, marigolds and turmeric.</p><p class="where">Rupganj Riverside, Narayanganj</p></article>
+    <article class="panel ev"><p class="bn">আকদ ও বিয়ে</p><h3>Akdh &amp; Biye</h3><p class="when">Saturday 18 March · from 5 pm</p><p>The nikah at Maghrib, then the reception with the couple on stage.</p><p class="where">Senakunja Grand Hall, Dhaka</p></article>
+    <article class="panel ev"><p class="bn">বৌভাত</p><h3>Bou-bhat</h3><p class="when">Sunday 19 March · 8 pm</p><p>Tanzim’s family welcomes Nusaiba home.</p><p class="where">Gulshan, Dhaka</p></article>
+  </section>
+
+  <section class="center-wrap">
+    <div class="panel">
+      <p class="kicker">The biye is in</p>
+      <div class="count">
+        <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>mins</span></div><div><b id="cd-s">00</b><span>secs</span></div>
+      </div>
+      <div class="row">
+        <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Nusaiba%20%26%20Tanzim%20%E2%80%94%20Biye&amp;dates=20280318T110000Z/20280318T170000Z&amp;location=Dhaka">Add to calendar</a>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Dhaka">Open in maps</a>
+      </div>
+      <p class="dress">Dress code: jamdani, muslin and anything handwoven.</p>
+    </div>
+  </section>
+
+  <section class="center-wrap" id="rsvp">
+    <div class="panel rsvp">
+      <p class="kicker">Kindly reply by 15 February 2028</p>
+      <h2>Will you be part of the weave?</h2>
+      <form id="form" novalidate>
+        <label for="f-name">Your name</label>
+        <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+        <fieldset>
+          <legend>Which events will you attend?</legend>
+          <label class="tick"><input type="checkbox" value="Mehedi" checked><span>Mehedi</span></label>
+          <label class="tick"><input type="checkbox" value="Gaye Holud" checked><span>Gaye Holud</span></label>
+          <label class="tick"><input type="checkbox" value="Akdh & Biye" checked><span>Akdh &amp; Biye</span></label>
+          <label class="tick"><input type="checkbox" value="Bou-bhat" checked><span>Bou-bhat</span></label>
+        </fieldset>
+        <label for="f-count">Guests</label>
+        <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn big" type="submit">Send my reply</button>
+      </form>
+      <div class="thanks" aria-live="polite"><p class="bn big">ধন্যবাদ</p><p class="thanks-title">JazakAllah khair</p><p id="thanks-msg"></p></div>
+    </div>
+  </section>
+
+  <footer><p class="arabic" lang="ar" dir="rtl">بَارَكَ ٱللَّٰهُ لَكُمَا</p><p class="kicker">Nusaiba &amp; Tanzim · 18 · 03 · 2028 · Dhaka</p></footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

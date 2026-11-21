@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0608">
+<title>Mehreen &amp; Arif · Shahi Biye</title>
+<meta name="description" content="Mehreen & Arif — a royal wedding, Friday 25 February 2028, Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700&family=Amiri&family=Tiro+Bangla&family=Hind+Siliguri:wght@300;400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<!-- gate dhora: the bride's cousins block the entrance with a ribbon until the groom's side pays up -->
+<div class="gate" id="gate">
+  <div class="arch" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="gate-top">
+    <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <p class="bn">শাহী বিয়ে</p>
+    <h1>Mehreen <span>&amp;</span> Arif</h1>
+  </div>
+  <div class="ribbon-wrap" aria-hidden="true">
+    <div class="ribbon l"></div><div class="ribbon r"></div><div class="bow"></div>
+    <div class="scissors" id="scissors"><i></i><i></i></div>
+  </div>
+  <div class="haggle">
+    <p class="cousins" id="cousins" aria-live="polite">“Gate fee first! <b>৳ 50,000</b> or no entry!”<small>— the bride’s cousins</small></p>
+    <button class="cta" id="offer">Offer ৳ 5,000</button>
+    <p class="hint">It’s a Bangladeshi wedding: you have to pay to get in. Sound on.</p>
+  </div>
+</div>
+
+<main>
+  <header class="stop hero">
+    <div class="card crest-card">
+      <div class="crest" aria-hidden="true"><svg viewBox="0 0 120 120"><path class="crown" d="M28 44l12 14 20-24 20 24 12-14-6 30H34z"/><circle cx="60" cy="30" r="5"/><circle cx="28" cy="42" r="4"/><circle cx="92" cy="42" r="4"/><text x="60" y="104" text-anchor="middle">M · A</text><path class="wreath" d="M18 70c0 26 18 42 42 44M102 70c0 26-18 42-42 44"/></svg></div>
+      <p class="kicker">Together with their families</p>
+      <h2 class="names">Mehreen <i>&amp;</i> Arif</h2>
+      <p>request the honour of your company as they begin their life together. Please walk with us to the stage.</p>
+      <p class="cue">Scroll to walk the red carpet</p>
+    </div>
+  </header>
+
+  <section class="stop"><article class="card ev">
+    <p class="bn">গায়ে হলুদ</p><h3>Gaye Holud</h3><p class="when">Wednesday 23 February · 5 pm</p>
+    <p>Marigolds, yellow jamdani and songs from both families.</p><p class="where">The Courtyard, Gulshan Club</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev">
+    <p class="bn">আকদ</p><h3>Akdh</h3><p class="when">Friday 25 February · after Asr</p>
+    <p>The nikah, with the kabin signed in front of both families and the qazi.</p><p class="where">Baitul Mukarram Hall</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev">
+    <p class="bn">শাহী বিয়ে</p><h3>The Royal Reception</h3><p class="when">Friday 25 February · 7:30 pm</p>
+    <p>Gate dhora at the entrance, the couple on the stage, kacchi biryani and borhani until late.</p><p class="where">The Royal Darbar Hall, Dhaka</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev">
+    <p class="bn">ওয়ালিমা</p><h3>Walima</h3><p class="when">Sunday 27 February · 8 pm</p>
+    <p>Arif’s family welcomes Mehreen home with a grand dinner.</p><p class="where">InterContinental Dhaka</p>
+  </article></section>
+
+  <section class="stop"><div class="card">
+    <p class="kicker">The royal day is in</p>
+    <div class="count">
+      <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>mins</span></div><div><b id="cd-s">00</b><span>secs</span></div>
+    </div>
+    <div class="row">
+      <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Mehreen%20%26%20Arif%20%E2%80%94%20Shahi%20Biye&amp;dates=20280225T133000Z/20280225T180000Z&amp;location=Dhaka">Add to calendar</a>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gulshan%2C%20Dhaka">Open in maps</a>
+    </div>
+  </div></section>
+
+  <section class="stop end" id="rsvp"><div class="card rsvp">
+    <p class="kicker">Kindly reply by 25 January 2028</p>
+    <h2>Will you join the royal court?</h2>
+    <form id="form" novalidate>
+      <label for="f-name">Your name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+      <fieldset>
+        <legend>Which events will you attend?</legend>
+        <label class="tick"><input type="checkbox" value="Gaye Holud" checked><span>Gaye Holud</span></label>
+        <label class="tick"><input type="checkbox" value="Akdh" checked><span>Akdh</span></label>
+        <label class="tick"><input type="checkbox" value="Reception" checked><span>Reception</span></label>
+        <label class="tick"><input type="checkbox" value="Walima" checked><span>Walima</span></label>
+      </fieldset>
+      <label for="f-count">Guests</label>
+      <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn big" type="submit">Accept the invitation</button>
+    </form>
+    <div class="thanks" aria-live="polite"><p class="bn big">ধন্যবাদ</p><p class="thanks-title">JazakAllah khair</p><p id="thanks-msg"></p></div>
+  </div></section>
+
+  <footer><p class="arabic dua" lang="ar" dir="rtl">بَارَكَ ٱللَّٰهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا</p><p class="kicker">Mehreen &amp; Arif · 25 · 02 · 2028 · Dhaka</p></footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

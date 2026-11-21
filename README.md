@@ -1,30 +1,48 @@
 # Virtual Invitation
 
-Ten interactive 3D wedding invitations, built mobile-first. Each folder is a self-contained static site with no build step and no dependencies to install.
+Interactive 3D wedding invitations, built mobile-first. Each folder is a self-contained static site with no build step and no dependencies to install.
 
-**Live demos (GitHub Pages)**
+The invitations are in two collections:
 
-| # | Invitation | Live link | Main effect |
+- **`desi/`** — Bangladeshi and South Asian Muslim weddings, including several royal designs.
+- **`western/`** — classic Western-style weddings.
+
+## Desi collection
+
+| # | Invitation | Live link | What happens |
 |---|---|---|---|
-| 01 | Stardust | [open](https://arafatanam.github.io/Virtual-Invitation/01-stardust/) | Particles morph into names, rings, date, heart and map pin as you scroll |
-| 02 | Theatre | [open](https://arafatanam.github.io/Virtual-Invitation/02-theatre/) | 3D theatre: velvet curtains part, spotlights, gold confetti |
-| 03 | Garden | [open](https://arafatanam.github.io/Virtual-Invitation/03-garden/) | 3D envelope with wax seal, petals, butterflies, flip clock |
-| 04 | Storybook | [open](https://arafatanam.github.io/Virtual-Invitation/04-storybook/) | A 3D book you page through by dragging |
-| 05 | Lanterns | [open](https://arafatanam.github.io/Virtual-Invitation/05-lanterns/) | Reflective lake, rising lanterns, tap to release your own |
-| 06 | Snow Globe | [open](https://arafatanam.github.io/Virtual-Invitation/06-snowglobe/) | Glass globe with a snowy cabin; swipe to spin, shake your phone to swirl the snow, aurora sky |
-| 07 | Pop-up Card | [open](https://arafatanam.github.io/Virtual-Invitation/07-popup/) | Paper pop-up scenes that fold up as you scroll; postcard RSVP |
-| 08 | Vinyl | [open](https://arafatanam.github.io/Virtual-Invitation/08-vinyl/) | Sleeve to turntable; scratch the record, live EQ, funk groove |
-| 09 | Kinetic Type | [open](https://arafatanam.github.io/Virtual-Invitation/09-kinetic/) | Scroll-scrubbed typography, 3D date cube, horizontal timeline |
-| 10 | Disco | [open](https://arafatanam.github.io/Virtual-Invitation/10-disco/) | Mirror ball, beat-synced LED floor you can tap, light beams |
+| 01 | Mehedi | [open](https://arafatanam.github.io/Virtual-Invitation/desi/01-mehndi/) | A mehedi cone pipes the design onto a 3D hand. The paste dries and flakes off to reveal the stain, and then guests hunt for the groom’s hidden initial. |
+| 02 | Shahi Mahal (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/02-haveli/) | Carved palace doors swing open onto a walk through Mughal arches hung with marigolds, ending at the couple’s royal pavilion. |
+| 03 | Churi | [open](https://arafatanam.github.io/Virtual-Invitation/desi/03-churiyan/) | Glass, gold and kundan bangles drop onto a wrist and jingle when tapped. For each event they re-form into a new shape (stack, spiral, orb, wreath, interlinked pair). |
+| 04 | Alpona | [open](https://arafatanam.github.io/Virtual-Invitation/desi/04-alpona/) | An alpona pours in from coloured powder, ringed by brass lanterns. It turns into a new design for each event, including an eight-point Islamic star, and finally spells the couple’s names. |
+| 05 | Nikah Farman (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/05-nikah/) | Break the wax seal and a royal scroll unrolls (Bismillah, names in Bengali) in front of a moonlit Mughal palace with a reflecting pool and fireworks. |
+| 06 | Gaye Holud | [open](https://arafatanam.github.io/Virtual-Invitation/desi/06-holud/) | A bright daytime design with blooming 3D marigolds, swinging garland ropes and turmeric splashes on every tap. |
+| 07 | Shahi Biye (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/07-darbar/) | Haggle over the gate-dhora fee and snip the ribbon, then walk the red carpet through a darbar hall with crystal chandeliers to the couple’s stage. |
+| 08 | Jamdani (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/08-jamdani/) | A handloom weaves the invitation thread by thread in jamdani motifs, then the cloth lifts off as a flowing 3D sari. |
 
-Tip: open the links on a phone with sound on. Every invitation starts with a tap, because browsers only allow audio after the user interacts.
+## Western collection
+
+| # | Invitation | Live link |
+|---|---|---|
+| 01 | Stardust | [open](https://arafatanam.github.io/Virtual-Invitation/western/01-stardust/) |
+| 02 | Theatre | [open](https://arafatanam.github.io/Virtual-Invitation/western/02-theatre/) |
+| 03 | Garden | [open](https://arafatanam.github.io/Virtual-Invitation/western/03-garden/) |
+| 04 | Storybook | [open](https://arafatanam.github.io/Virtual-Invitation/western/04-storybook/) |
+| 05 | Lanterns | [open](https://arafatanam.github.io/Virtual-Invitation/western/05-lanterns/) |
+| 06 | Snow Globe | [open](https://arafatanam.github.io/Virtual-Invitation/western/06-snowglobe/) |
+| 07 | Pop-up Card | [open](https://arafatanam.github.io/Virtual-Invitation/western/07-popup/) |
+| 08 | Vinyl | [open](https://arafatanam.github.io/Virtual-Invitation/western/08-vinyl/) |
+| 09 | Kinetic Type | [open](https://arafatanam.github.io/Virtual-Invitation/western/09-kinetic/) |
+| 10 | Disco | [open](https://arafatanam.github.io/Virtual-Invitation/western/10-disco/) |
+
+Open the links on a phone with the sound on. Every invitation starts with a tap, because browsers only allow audio to play after the user interacts with the page.
 
 ## Folder layout
 
 ```
-0X-name/
-  index.html     ← all the text (names, dates, venue, schedule)
-  css/style.css  ← colours and fonts (design tokens at the top in :root)
+<collection>/0X-name/
+  index.html     ← all the text (names, dates, venues, events)
+  css/style.css  ← colours and fonts (design tokens at the top, in :root)
   js/main.js     ← animation, countdown date, RSVP handling, music
   vendor/        ← three.js r128 add-ons (where used) + music.js (music generated in code, no audio files)
 ```
@@ -36,16 +54,19 @@ All names, dates and venues are placeholders.
 - **Text:** edit `index.html`.
 - **Countdown:** in `js/main.js`, search for `new Date('20`.
 - **Calendar and map buttons:** update the `href` links in `index.html`.
-- **Text drawn in 3D or on canvas:** in 01 see `buildShapes()`, in 02 `namesTexture()`, in 05 `personalLantern()`, and in 06 the plaque canvas.
+- **Names drawn in 3D, on canvas or woven:**
+  - desi/02 — `makeNames()`
+  - desi/04 — `buildNameMask()`
+  - desi/08 — `buildMask()`
 
 ## RSVP
 
-The forms validate input and play their thank-you animations, but **they don't send replies anywhere yet**. Each `main.js` has a `// NOTE: connect a form backend here` comment where you can post to Google Forms, Formspree, Supabase or similar.
+The forms validate input and play their thank-you animations, but **they don’t send replies anywhere yet**. To make them save replies, find the `// NOTE: connect a form backend here` comment in each `main.js` and post the reply from there to Google Forms, Formspree, Supabase or a similar service.
 
 ## Running locally
 
-Open any folder's `index.html` in a browser, or serve the repo root with any static server, for example `npx serve .`.
+Open any folder’s `index.html` in a browser, or serve the repo root with any static server, for example `npx serve .`.
 
 ## Deploying
 
-The site is served by GitHub Pages from the `main` branch root. Pushing to `main` redeploys it automatically within a minute or two.
+GitHub Pages serves the site from the root of the `main` branch. Pushing to `main` redeploys it automatically within a minute or two.

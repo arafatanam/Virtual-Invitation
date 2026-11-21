@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14081c">
+<title>Raisa &amp; Fahim · Shahi Mahal</title>
+<meta name="description" content="Raisa & Fahim — a royal wedding, 4–7 February 2027, Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Bangla&family=Amiri&family=Mukta:wght@300;400;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<div class="doorway" id="doorway">
+  <div class="leaves">
+    <div class="leaf left"><div class="panel"></div><div class="panel"></div><div class="panel"></div><i class="ring"></i></div>
+    <div class="leaf right"><div class="panel"></div><div class="panel"></div><div class="panel"></div><i class="ring"></i></div>
+    <div class="seam"></div>
+  </div>
+  <svg class="frame" viewBox="0 0 400 800" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#a8741e"/><stop offset=".5" stop-color="#ffe29a"/><stop offset="1" stop-color="#a8741e"/></linearGradient></defs>
+    <path id="frameShape" fill="#2a1408" fill-rule="evenodd"/>
+    <path id="frameLine" fill="none" stroke="url(#gold)" stroke-width="5"/>
+    <path id="frameLine2" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity=".7"/>
+  </svg>
+  <div class="toran" id="toran" aria-hidden="true"></div>
+  <div class="door-copy">
+    <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <p class="deva">শুভ বিবাহ</p>
+    <h1>Raisa <span>&amp;</span> Fahim</h1>
+    <p class="kicker">4 – 7 February 2027 · Dhaka</p>
+    <button class="knock" id="knock"><span>Open the doors</span></button>
+    <p class="hint">Sound on for the sanai</p>
+  </div>
+</div>
+
+<main>
+  <header class="stop hero">
+    <div class="card hero-card">
+      <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      <p class="kicker">Together with their families</p>
+      <h2 class="names">Raisa <i>&amp;</i> Fahim</h2>
+      <p>request the honour of your presence as they walk through these doors into a new life together.</p>
+      <p class="cue">Scroll to walk through the haveli</p>
+    </div>
+  </header>
+
+  <section class="stop"><article class="card ev" style="--c:#f7c548">
+    <p class="deva">গায়ে হলুদ</p><h3>Gaye Holud</h3><p class="when">Thursday 4 February · 4:00 pm</p>
+    <p>Turmeric, marigolds and an all-out yellow battle in the courtyard. Wear something you don’t mind ruining.</p>
+    <p class="where">The Courtyard, Gulshan</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev" style="--c:#62c370">
+    <p class="deva">মেহেদি</p><h3>Mehedi Night</h3><p class="when">Thursday 4 February · 8:00 pm</p>
+    <p>Henna for everyone, fuchka stalls and folk singers by the lake.</p>
+    <p class="where">Lakeside Lawns, Gulshan</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev" style="--c:#ff5fa2">
+    <p class="deva">আকদ</p><h3>Akdh</h3><p class="when">Friday 5 February · after Asr</p>
+    <p>The nikah in the presence of both families, with the kabin signed and duas for the couple.</p>
+    <p class="where">Darbar Hall, Dhaka</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev" style="--c:#ff6a3d">
+    <p class="deva">বিয়ে</p><h3>Biye</h3><p class="when">Saturday 6 February · from 7:00 pm</p>
+    <p>The bor jatri arrives, gate dhora at the entrance, then the couple on the royal stage and kacchi for everyone.</p>
+    <p class="where">Shahi Mahal Pavilion, Dhaka</p>
+  </article></section>
+
+  <section class="stop"><article class="card ev" style="--c:#e8d3a2">
+    <p class="deva">ওয়ালিমা</p><h3>Walima</h3><p class="when">Sunday 7 February · 8:00 pm</p>
+    <p>Fahim’s family hosts the walima dinner to welcome Raisa home.</p>
+    <p class="where">Palace Terrace, Dhaka</p>
+  </article></section>
+
+  <section class="stop"><div class="card">
+    <p class="kicker">The biye begins in</p>
+    <div class="count">
+      <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>mins</span></div><div><b id="cd-s">00</b><span>secs</span></div>
+    </div>
+    <p class="where">Shahi Mahal Pavilion, Dhaka</p>
+    <div class="row">
+      <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Raisa%20%26%20Fahim%20%E2%80%94%20Biye&amp;dates=20270206T113000Z/20270206T183000Z&amp;location=Dhaka">Add to calendar</a>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gulshan%2C%20Dhaka">Open in maps</a>
+    </div>
+  </div></section>
+
+  <section class="stop end" id="rsvp"><div class="card rsvp">
+    <p class="kicker">Kindly reply by 1 January 2027</p>
+    <h2>Will you join us at the palace?</h2>
+    <form id="form" novalidate>
+      <label for="f-name">Your name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+      <fieldset>
+        <legend>Which events will you attend?</legend>
+        <label class="tick"><input type="checkbox" value="Gaye Holud" checked><span>Gaye Holud</span></label>
+        <label class="tick"><input type="checkbox" value="Mehedi" checked><span>Mehedi</span></label>
+        <label class="tick"><input type="checkbox" value="Akdh" checked><span>Akdh</span></label>
+        <label class="tick"><input type="checkbox" value="Biye" checked><span>Biye</span></label>
+        <label class="tick wide"><input type="checkbox" value="Walima" checked><span>Walima</span></label>
+      </fieldset>
+      <label for="f-count">Guests</label>
+      <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn big" type="submit">Send my reply</button>
+    </form>
+    <div class="thanks" aria-live="polite"><p class="deva big">ধন্যবাদ</p><p class="thanks-title">JazakAllah khair!</p><p id="thanks-msg"></p></div>
+  </div></section>
+
+  <footer><p class="names small">Raisa <i>&amp;</i> Fahim</p><p class="kicker">06 · 02 · 2027 · Dhaka</p></footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
