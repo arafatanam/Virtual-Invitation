@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060a1c">
+<title>Leila &amp; Kai · Lanterns</title>
+<meta name="description" content="Under the same sky — Leila & Kai are getting married. Saturday 21 August 2027, Moonlake Pavilion, Lake Bled.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Italiana&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="lake" aria-hidden="true"></canvas>
+
+<div class="loader" id="loader"><div class="ember"></div><p>Waiting for nightfall…</p></div>
+
+<div class="gate" id="gate">
+  <p class="eyebrow">Leila &amp; Kai invite you</p>
+  <button class="light-btn" id="light" aria-label="Light the first lantern and open the invitation">
+    <span class="flame" aria-hidden="true"><i></i></span>
+    <span>Light a lantern</span>
+  </button>
+  <p class="hint">Sound on · tap the lake later to release your own</p>
+</div>
+
+<main id="story">
+  <header class="hero">
+    <p class="eyebrow">Under the same sky</p>
+    <h1><span>Leila</span><em>&amp;</em><span>Kai</span></h1>
+    <p class="sub">are getting married</p>
+    <p class="when">21 · 08 · 2027 · Lake Bled</p>
+    <p class="cue">Scroll, and watch the sky fill</p>
+  </header>
+
+  <section class="panel">
+    <p class="eyebrow">The invitation</p>
+    <h2>Join us by the water</h2>
+    <p>On a late summer evening, when the lake turns to glass and the first stars come out, we’ll make our promises. Then we’ll send a hundred lanterns into the sky, one for every person who brought us here.</p>
+    <p>One of them is yours.</p>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">Save the date</p>
+    <h2>Saturday 21 August 2027</h2>
+    <p>The ceremony begins at seven in the evening, timed for the golden hour.</p>
+    <div class="count">
+      <div><b id="cd-d">000</b><span>days</span></div>
+      <div><b id="cd-h">00</b><span>hours</span></div>
+      <div><b id="cd-m">00</b><span>minutes</span></div>
+      <div><b id="cd-s">00</b><span>seconds</span></div>
+    </div>
+    <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Leila%20%26%20Kai%20%E2%80%94%20Wedding&amp;dates=20270821T170000Z/20270821T230000Z&amp;location=Moonlake%20Pavilion%2C%20Lake%20Bled">Add to calendar</a>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">The evening</p>
+    <h2>As the sky darkens</h2>
+    <ol class="steps">
+      <li><time>18:30</time><div><h3>Boats to the pavilion</h3><p>Wooden pletna boats leave the jetty every ten minutes.</p></div></li>
+      <li><time>19:00</time><div><h3>The ceremony</h3><p>On the water’s edge, as the sun sets.</p></div></li>
+      <li><time>20:00</time><div><h3>Dinner on the terrace</h3><p>Long tables, candles and a lot of food.</p></div></li>
+      <li><time>21:30</time><div><h3>The lantern release</h3><p>Everyone lights one. Make a wish.</p></div></li>
+      <li><time>22:00</time><div><h3>Dancing under the stars</h3><p>Until the last boat at one.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">The place</p>
+    <h2>Moonlake Pavilion</h2>
+    <p class="addr">Cesta Svobode 1, 4260 Bled, Slovenia</p>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Lake%20Bled%2C%20Slovenia">Open in maps</a>
+    <div class="facts">
+      <div><h3>Dress code</h3><p>Summer formal. Evenings by the lake get cool, so bring a layer.</p></div>
+      <div><h3>Where to stay</h3><p>We’ve held rooms at two hotels on the lakeshore until 1 June.</p></div>
+      <div><h3>Getting there</h3><p>A shuttle runs from Ljubljana airport at 15:00 and 16:30.</p></div>
+    </div>
+  </section>
+
+  <section class="panel" id="rsvp">
+    <p class="eyebrow">Kindly reply by 1 June 2027</p>
+    <h2>Send us your lantern</h2>
+    <p class="small">Reply below and your lantern will rise over the lake with your name on it.</p>
+    <form id="form" novalidate>
+      <div><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="Full name" maxlength="40"></div>
+      <div><span class="lbl">Your reply</span>
+        <div class="choice">
+          <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">I’ll be there</label>
+          <input type="radio" name="att" id="f-no" value="no"><label for="f-no">I can’t make it</label>
+        </div>
+      </div>
+      <div><label for="f-count">Number of guests</label><select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+      <div><label for="f-wish">A wish for the couple</label><textarea id="f-wish" placeholder="Optional"></textarea></div>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" type="submit">Release my lantern</button>
+    </form>
+    <div class="thanks" aria-live="polite"><p class="script">Thank you</p><p id="thanks-msg"></p></div>
+  </section>
+
+  <footer>
+    <p class="script">Leila &amp; Kai</p>
+    <p class="eyebrow">21 · 08 · 2027</p>
+  </footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/Water.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

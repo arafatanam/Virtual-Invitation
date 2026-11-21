@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3e5de">
+<title>Amara &amp; Leo · In the Garden</title>
+<meta name="description" content="Amara & Leo invite you to celebrate their wedding — Saturday 15 May 2027, Villa Verdana, Lake Garda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Gilda+Display&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<!-- ============ the envelope ============ -->
+<div class="gate" id="gate">
+  <div class="leafshadow" aria-hidden="true"></div>
+  <p class="to">For you &amp; yours</p>
+  <div class="env-wrap"><div class="float">
+    <div class="env" id="env">
+      <div class="env-back"></div>
+      <div class="letter"><small>The wedding of</small><b>Amara &amp; Leo</b><small>15 · 05 · 2027</small></div>
+      <div class="pocket"><svg viewBox="0 0 145 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="pl" x1="0" x2="1"><stop offset="0" stop-color="#e8cfc3"/><stop offset="1" stop-color="#f1ddd3"/></linearGradient>
+          <linearGradient id="pr" x1="1" x2="0"><stop offset="0" stop-color="#e3c7ba"/><stop offset="1" stop-color="#efdad0"/></linearGradient>
+          <linearGradient id="pb" y1="1" y2="0"><stop offset="0" stop-color="#f5e5dc"/><stop offset="1" stop-color="#ecd5ca"/></linearGradient>
+        </defs>
+        <path d="M0 0 L72.5 56 L0 100Z" fill="url(#pl)"/>
+        <path d="M145 0 L72.5 56 L145 100Z" fill="url(#pr)"/>
+        <path d="M0 100 L72.5 50 L145 100Z" fill="url(#pb)"/>
+        <path d="M0 100 L72.5 50 L145 100" fill="none" stroke="rgba(150,100,85,.25)" stroke-width=".4"/>
+      </svg></div>
+      <div class="flap"><i class="outer"></i><i class="inner"></i></div>
+      <button class="seal" id="seal" aria-label="Break the seal to open the invitation">
+        <span class="pulse"></span>
+        <span class="half l"><svg viewBox="0 0 100 100"><use href="#waxseal"/></svg></span>
+        <span class="half r"><svg viewBox="0 0 100 100"><use href="#waxseal"/></svg></span>
+      </button>
+    </div>
+    <div class="env-shadow"></div>
+  </div></div>
+  <p class="hint">Tap the seal to open · sound on</p>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="wx" cx="40%" cy="35%"><stop offset="0" stop-color="#86a361"/><stop offset=".6" stop-color="#5d7b40"/><stop offset="1" stop-color="#3d5528"/></radialGradient>
+    <g id="waxseal">
+      <path d="M50 3c7 0 9 4 15 5s11 1 14 6 1 9 4 14 8 8 7 14-6 7-6 13 4 10 1 15-9 4-13 8-5 10-11 11-9-3-15-3-10 4-15 2-5-8-10-11-11-3-13-9 3-9 2-15-6-9-3-14 9-4 12-9 1-11 6-14 11 0 15-2 6-5 12-5z" fill="url(#wx)"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#2f4628" stroke-opacity=".45" stroke-width="2"/>
+      <circle cx="50" cy="50" r="27" fill="none" stroke="#a8c184" stroke-opacity=".35" stroke-width="1"/>
+      <text x="50" y="62" text-anchor="middle" font-family="Allura,cursive" font-size="34" fill="#3a5226" stroke="#a8c184" stroke-opacity=".5" stroke-width=".6">A L</text>
+      <path d="M30 70q20 8 40 0" fill="none" stroke="#2f4628" stroke-opacity=".4" stroke-width="1.2"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- 3D petals & butterflies -->
+<canvas id="three" aria-hidden="true"></canvas>
+
+<!-- ============ the invitation ============ -->
+<header class="hero" id="hero">
+  <canvas id="garland" aria-hidden="true"></canvas>
+  <div class="arch" id="arch">
+    <svg class="chand" id="chand" viewBox="0 0 200 200" aria-hidden="true"></svg>
+    <p class="pre">Together with their families</p>
+    <h1 class="names"><span>Amara</span><span class="amp">&amp;</span><span>Leo</span></h1>
+    <p class="post">invite you to celebrate their wedding in the garden</p>
+    <div class="dateline"><span>Saturday</span><b>15</b><span>May 2027</span></div>
+    <p class="place">Villa Verdana · Lake Garda</p>
+  </div>
+</header>
+
+<main>
+  <section class="block tilt" aria-labelledby="h-count">
+    <p class="lbl-top">The countdown</p>
+    <h2 id="h-count">Until we say yes</h2>
+    <div class="clock" id="clock" aria-label="Countdown to the wedding">
+      <div class="unit"><div class="digits" data-unit="d" data-len="3"></div><span>days</span></div>
+      <div class="unit"><div class="digits" data-unit="h" data-len="2"></div><span>hours</span></div>
+      <div class="unit"><div class="digits" data-unit="m" data-len="2"></div><span>mins</span></div>
+      <div class="unit"><div class="digits" data-unit="s" data-len="2"></div><span>secs</span></div>
+    </div>
+    <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Amara%20%26%20Leo%20%E2%80%94%20Wedding&amp;dates=20270515T140000Z/20270515T220000Z&amp;location=Villa%20Verdana%2C%20Lake%20Garda">Add to calendar</a>
+  </section>
+
+  <section class="block tilt" aria-labelledby="h-story">
+    <p class="lbl-top">Our story</p>
+    <h2 id="h-story">It started with a seed</h2>
+    <div class="polaroids" id="polaroids">
+      <figure style="--r:-7deg"><div class="ph ph1"><span>2019</span></div><figcaption>A seed swap in Verona</figcaption></figure>
+      <figure style="--r:4deg"><div class="ph ph2"><span>2022</span></div><figcaption>Our first balcony garden</figcaption></figure>
+      <figure style="--r:-3deg"><div class="ph ph3"><span>2026</span></div><figcaption>He asked among the roses</figcaption></figure>
+    </div>
+    <p>Seven years, three apartments and one very stubborn lemon tree later, we’re planting something that lasts.</p>
+  </section>
+
+  <section class="block tilt" aria-labelledby="h-venue">
+    <div class="venue">
+      <svg class="villa" viewBox="0 0 240 120" aria-hidden="true"><g fill="none" stroke="#e8dfc4" stroke-width="1.1">
+        <path d="M20 112h200M40 112V58h160v54M30 58h180l-20-22H50z"/><path d="M110 36V20h20v16M104 20h32"/>
+        <path d="M58 112V86a9 9 0 0 1 18 0v26M90 112V86a9 9 0 0 1 18 0v26M132 112V86a9 9 0 0 1 18 0v26M164 112V86a9 9 0 0 1 18 0v26"/>
+        <path d="M60 66h12v10H60zM94 66h12v10H94zM134 66h12v10h-12zM168 66h12v10h-12z" opacity=".7"/>
+        <path d="M8 112c0-30 10-46 14-46s8 16 8 46M210 112c0-30 10-46 14-46s8 16 8 46" opacity=".8"/>
+      </g></svg>
+      <p class="lbl-top">The venue</p>
+      <h2 id="h-venue">Villa Verdana</h2>
+      <p><i>Strada dei Glicini 7<br>Lake Garda, Italy</i></p>
+      <p class="note">The ceremony is in the rose garden. Free parking at the villa gates.</p>
+      <a class="btn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Lake%20Garda%2C%20Italy">Get directions</a>
+    </div>
+  </section>
+
+  <section class="block tilt" aria-labelledby="h-day">
+    <p class="lbl-top">The day</p>
+    <h2 id="h-day">How it unfolds</h2>
+    <div class="day-wrap">
+      <svg class="vine" preserveAspectRatio="none" viewBox="0 0 20 100" aria-hidden="true"><path id="vinePath" d="M10 0 C2 12 18 22 10 34 S2 56 10 68 S18 88 10 100" fill="none" stroke="#9caf86" stroke-width="1.6" vector-effect="non-scaling-stroke" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+      <ol class="day" id="day">
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4e6b3d" stroke-width="1.3"><circle cx="9" cy="13" r="5"/><circle cx="15" cy="13" r="5"/><path d="M10 6l2-3 2 3"/></svg></span><div><time>16:00</time><h3>Ceremony</h3><p>Among the roses, by the lake</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4e6b3d" stroke-width="1.3"><path d="M7 3h10l-1 7a4 4 0 0 1-8 0zM12 14v7M8 21h8"/></svg></span><div><time>17:00</time><h3>Aperitivo</h3><p>Spritz and music on the terrace</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4e6b3d" stroke-width="1.3"><path d="M7 3v8a2 2 0 0 0 4 0V3M9 11v10M17 3c-2 2-2 7 0 9v9"/></svg></span><div><time>19:00</time><h3>Dinner</h3><p>Long tables under the wisteria</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4e6b3d" stroke-width="1.3"><path d="M5 21h14M6 21v-6h12v6M8 15v-4h8v4M12 11V8M12 5.5a1 1 0 1 0 0 .1"/></svg></span><div><time>21:00</time><h3>Cake &amp; first dance</h3><p>Under the string lights</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#4e6b3d" stroke-width="1.3"><path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="16" r="2"/></svg></span><div><time>22:00</time><h3>Dancing</h3><p>Until the fireflies go home</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block tilt" aria-labelledby="h-dress">
+    <p class="lbl-top">Dress code</p>
+    <h2 id="h-dress">Garden formal</h2>
+    <p>Light fabrics and soft colours. The ceremony is on the lawn, so block heels will be your friend.</p>
+    <div class="swatches" aria-label="Suggested colours: sage, blush, ivory, olive, dusty blue">
+      <i style="background:#9caf86"></i><i style="background:#ecd0c4"></i><i style="background:#f6f0e4"></i><i style="background:#6f7c4a"></i><i style="background:#a9bccb"></i>
+    </div>
+  </section>
+
+  <section class="block tilt" aria-labelledby="h-qa">
+    <p class="lbl-top">Questions &amp; answers</p>
+    <h2 id="h-qa">Good to know</h2>
+    <div class="qa">
+      <details><summary>Can I bring a plus one?</summary><p>If your invitation says “and guest”, absolutely. Add their name when you reply.</p></details>
+      <details><summary>Are children welcome?</summary><p>Yes! There will be a little garden play area and a babysitter from 19:00.</p></details>
+      <details><summary>Where should I stay?</summary><p>We’ve held rooms at two hotels in Sirmione. A shuttle runs to and from the villa all evening.</p></details>
+      <details><summary>What about gifts?</summary><p>Your company is plenty. If you’d like to give something, we’re saving for our first garden.</p></details>
+    </div>
+  </section>
+
+  <section class="block tilt" aria-labelledby="h-rsvp">
+    <div class="rsvp" id="rsvp">
+      <p class="lbl-top">Kindly reply by 1 April 2027</p>
+      <h2 id="h-rsvp">Will you come?</h2>
+      <form id="form" novalidate>
+        <div><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="Full name"></div>
+        <div><span class="lbl">Your reply</span>
+          <div class="choice">
+            <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">Accepts with joy</label>
+            <input type="radio" name="att" id="f-no" value="no"><label for="f-no">Declines with regret</label>
+          </div>
+        </div>
+        <div><label for="f-count">Guests including you</label><select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
+        <div><label for="f-diet">Dietary needs</label><input id="f-diet" type="text" placeholder="Vegetarian, allergies…"></div>
+        <div><label for="f-msg">A wish for the couple</label><textarea id="f-msg" placeholder="Optional"></textarea></div>
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn" type="submit">Send my reply</button>
+      </form>
+      <div class="thanks" aria-live="polite"><h3>Thank you</h3><p id="thanks-msg"></p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="sig">Amara &amp; Leo</div>
+  <p>15 · 05 · 2027</p>
+  <canvas id="garland2" aria-hidden="true"></canvas>
+</footer>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

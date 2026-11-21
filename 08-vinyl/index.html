@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4e9d8">
+<title>Maya &amp; Jonah · The Wedding Album</title>
+<meta name="description" content="Maya & Jonah — The Wedding Album. Saturday 9 October 2027, Halcyon Hall, Austin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shrikhand&family=Work+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<div class="sunburst" aria-hidden="true"></div>
+<div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<!-- ===== the sleeve ===== -->
+<div class="gate" id="gate">
+  <p class="mono-top">New release · Side A</p>
+  <div class="sleeve-wrap">
+    <div class="sleeve" id="sleeve">
+      <div class="rainbow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="sl-title">Maya<br>&amp; Jonah</p>
+      <p class="sl-sub">The Wedding Album</p>
+      <span class="sl-sticker">Live at<br>Halcyon Hall</span>
+    </div>
+    <div class="record-peek" id="peek"><div class="grooves"></div><div class="peek-label"></div></div>
+  </div>
+  <button class="play" id="play"><span class="tri"></span>Drop the needle</button>
+  <p class="hint">Turn your sound up</p>
+</div>
+
+<main>
+  <!-- ===== the turntable ===== -->
+  <header class="hero">
+    <svg class="wavy" viewBox="0 0 400 120" aria-hidden="true">
+      <path id="wave" d="M0 70 C 60 20, 110 120, 200 70 S 340 20, 400 70" fill="none"/>
+      <text><textPath href="#wave" id="wavetext" startOffset="0%">Maya &amp; Jonah ✦ are getting married ✦ Maya &amp; Jonah ✦ are getting married ✦</textPath></text>
+    </svg>
+    <h1 class="sr-only">Maya &amp; Jonah are getting married</h1>
+
+    <div class="deck-wrap">
+      <div class="deck" id="deck">
+        <div class="plinth">
+          <div class="platter">
+            <div class="strobe"></div>
+            <div class="disc" id="disc">
+              <div class="grooves"></div>
+              <div class="label">
+                <span class="lab-top">Side A · 33⅓</span>
+                <b>Maya &amp; Jonah</b>
+                <span class="lab-bot">09 · 10 · 2027</span>
+                <i class="hole"></i>
+              </div>
+            </div>
+            <div class="sheen"></div>
+          </div>
+          <div class="arm" id="arm">
+            <div class="arm-base"></div>
+            <div class="arm-rod"><div class="head"></div></div>
+          </div>
+          <div class="knob k1"></div><div class="knob k2"></div>
+          <span class="led" id="led"></span>
+        </div>
+      </div>
+    </div>
+    <div class="eq" id="eq" aria-hidden="true"></div>
+    <p class="scratch-tip">Spin the record with your finger to scratch</p>
+  </header>
+
+  <div class="marquee" aria-hidden="true"><div class="track"><span>Save the date ✦ 09.10.27 ✦ Austin, Texas ✦ Save the date ✦ 09.10.27 ✦ Austin, Texas ✦ </span><span>Save the date ✦ 09.10.27 ✦ Austin, Texas ✦ Save the date ✦ 09.10.27 ✦ Austin, Texas ✦ </span></div></div>
+
+  <section class="block notes rv">
+    <p class="kicker">Liner notes</p>
+    <h2>It started with a mixtape</h2>
+    <p>Jonah made Maya a playlist called “songs that remind me of you” three weeks after they met. It was far too early. It had 47 songs. She listened to all of them.</p>
+    <p>Eight years later, we’re pressing the record. Come and dance to it with us.</p>
+  </section>
+
+  <section class="block tracks rv">
+    <p class="kicker">Side A · Saturday 9 October 2027</p>
+    <h2>Tracklist</h2>
+    <ol class="tracklist" id="tracklist">
+      <li><span class="no">A1</span><span class="t">Arrivals &amp; Arnold Palmers</span><time>16:30</time></li>
+      <li><span class="no">A2</span><span class="t">The Ceremony (Live)</span><time>17:00</time></li>
+      <li><span class="no">A3</span><span class="t">Golden Hour Cocktails</span><time>17:45</time></li>
+      <li><span class="no">A4</span><span class="t">Texas BBQ Supper</span><time>19:00</time></li>
+      <li><span class="no">A5</span><span class="t">First Dance (Extended Mix)</span><time>20:30</time></li>
+      <li><span class="no">A6</span><span class="t">Dance Floor Medley</span><time>21:00</time></li>
+      <li><span class="no">A7</span><span class="t">Sparkler Send-off</span><time>23:30</time></li>
+    </ol>
+    <div class="countdown">
+      <p class="kicker">Time until the record drops</p>
+      <div class="count"><div><b id="cd-d">000</b><span>days</span></div><div><b id="cd-h">00</b><span>hrs</span></div><div><b id="cd-m">00</b><span>min</span></div><div><b id="cd-s">00</b><span>sec</span></div></div>
+      <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Maya%20%26%20Jonah%20%E2%80%94%20Wedding&amp;dates=20271009T213000Z/20271010T043000Z&amp;location=Halcyon%20Hall%2C%20Austin%2C%20Texas">Add to calendar</a>
+    </div>
+  </section>
+
+  <section class="block gig rv">
+    <div class="poster">
+      <p class="pp-small">One night only</p>
+      <p class="pp-big">Halcyon<br>Hall</p>
+      <p class="pp-addr">410 Riverside Drive<br>Austin, Texas 78704</p>
+      <div class="pp-row"><span>Doors 16:30</span><span>Dress: groovy formal</span></div>
+      <a class="btn dark" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Riverside%20Drive%2C%20Austin%2C%20Texas">Get directions</a>
+    </div>
+    <div class="swatches" aria-label="Colours we love: burnt orange, mustard, teal, rose, chocolate"><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="swatch-note">Wear something you can dance in. Bonus points for flares.</p>
+  </section>
+
+  <section class="block rsvp rv" id="rsvp">
+    <p class="kicker">Kindly reply by 1 August 2027</p>
+    <h2>Get on the guest list</h2>
+    <form id="form" novalidate>
+      <label for="f-name">Name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Your name">
+      <div class="choice">
+        <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">I’m in</label>
+        <input type="radio" name="att" id="f-no" value="no"><label for="f-no">Can’t make it</label>
+      </div>
+      <label for="f-count">Plus ones</label>
+      <select id="f-count"><option>Just me</option><option selected>Me + 1</option><option>Me + 2</option><option>Me + 3</option></select>
+      <label for="f-song">Request a song</label>
+      <input id="f-song" type="text" placeholder="Artist – song">
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" type="submit">Put me on the list</button>
+    </form>
+    <div class="thanks" aria-live="polite"><div class="ticket-ok"><span>Guest list</span><b id="ok-name">You</b><span>Admit · 09.10.27</span></div><p id="thanks-msg"></p></div>
+  </section>
+
+  <footer>
+    <p class="fin">Maya &amp; Jonah</p>
+    <p class="kicker">Thanks for listening</p>
+  </footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i><i></i></button>
+<div class="notes-fly" id="fly" aria-hidden="true"></div>
+
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

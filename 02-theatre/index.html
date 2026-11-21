@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f0204">
+<title>Sofia &amp; Adrian · Opening Night</title>
+<meta name="description" content="Sofia & Adrian request the pleasure of your company — Saturday 18 September 2027, Teatro Rosso, Florence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Monsieur+La+Doulaise&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="shade" id="shade" aria-hidden="true"></div>
+
+<div class="loader" id="loader"><div class="spot"></div><p>The house is filling…</p></div>
+
+<header class="hero" id="hero">
+  <div class="marquee" id="marquee">
+    <div class="sign">
+      <div class="bulbs" id="bulbs"></div>
+      <small>Teatro Rosso presents</small>
+      <strong>Opening Night</strong>
+      <em>for one evening only</em>
+    </div>
+    <button class="raise" id="raise">Raise the curtain</button>
+    <p class="hint">Sound on · take your seat</p>
+  </div>
+  <div class="billing" id="billing">
+    <h1 class="sr-only">Sofia &amp; Adrian are getting married</h1>
+    <p>request the pleasure of your company<br>at the celebration of their marriage</p>
+    <span class="scroll-cue">The programme</span>
+  </div>
+</header>
+
+<div class="programme">
+  <article class="card letter">
+    <p class="kicker">Overture</p>
+    <svg class="orn" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7h44M76 7h44" stroke="#b08a3e" stroke-width=".8"/><path d="M60 1l6 6-6 6-6-6z" fill="none" stroke="#b08a3e"/><circle cx="60" cy="7" r="1.6" fill="#7c0d1a"/></svg>
+    <p class="hello">Dear family &amp; friends,</p>
+    <p>For one evening in September an old theatre in Florence will be ours. We’d love you to take your seat beside us as we say yes, and then stay for the party that follows.</p>
+    <p>There will be music, far too much food, a little drama and a lot of dancing. It wouldn’t be the same show without you.</p>
+    <p class="sign-off">With all our love,<b>Sofia &amp; Adrian</b></p>
+  </article>
+
+  <article class="card">
+    <p class="kicker">Save the date</p>
+    <h2>Opening night<em>Saturday the 18th</em></h2>
+    <p class="month">September 2027</p>
+    <div class="cal" id="cal"></div>
+    <div class="count">
+      <div><b id="cd-d">000</b><span>days</span></div>
+      <div><b id="cd-h">00</b><span>hours</span></div>
+      <div><b id="cd-m">00</b><span>mins</span></div>
+      <div><b id="cd-s">00</b><span>secs</span></div>
+    </div>
+    <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sofia%20%26%20Adrian%20%E2%80%94%20Wedding&amp;dates=20270918T160000Z/20270918T230000Z&amp;location=Teatro%20Rosso%2C%20Florence">Add to calendar</a>
+  </article>
+
+  <article class="card">
+    <p class="kicker">Tonight’s programme</p>
+    <h2>In three acts</h2>
+    <ol class="acts">
+      <li><span class="act">Act I</span><h3>The ceremony</h3><time>18:00</time><p>On the main stage. Please be seated by 17:45.</p></li>
+      <li><span class="act">Interval</span><h3>Aperitivo</h3><time>19:00</time><p>Negronis and cicchetti in the foyer.</p></li>
+      <li><span class="act">Act II</span><h3>Dinner</h3><time>20:30</time><p>A Tuscan feast served in the stalls.</p></li>
+      <li><span class="act">Act III</span><h3>The dance</h3><time>22:30</time><p>A live band takes the stage.</p></li>
+      <li><span class="act">Encore</span><h3>Midnight gelato</h3><time>00:00</time><p>Because every good show needs one.</p></li>
+    </ol>
+  </article>
+
+  <article class="card">
+    <p class="kicker">The venue</p>
+    <h2>Teatro Rosso</h2>
+    <svg class="facade" viewBox="0 0 300 170" aria-hidden="true">
+      <g fill="none" stroke="#7c0d1a" stroke-width="1.2">
+        <path d="M20 160h260M30 160V70h240v90M20 70h260L150 18z"/>
+        <path d="M60 70v90M240 70v90" opacity=".5"/>
+        <path d="M45 160v-50a18 18 0 0 1 36 0v50M132 160v-56a18 18 0 0 1 36 0v56M219 160v-50a18 18 0 0 1 36 0v50"/>
+        <path d="M30 82h240" opacity=".5"/>
+      </g>
+      <circle cx="150" cy="50" r="9" fill="none" stroke="#b08a3e"/>
+      <text x="150" y="96" text-anchor="middle" font-family="Bodoni Moda,serif" font-size="9" letter-spacing="4" fill="#7c0d1a">TEATRO ROSSO</text>
+    </svg>
+    <p><i>Via dei Velluti 14<br>50125 Florence, Italy</i></p>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Florence%2C%20Italy">Open in maps</a>
+  </article>
+
+  <div class="ticket-wrap">
+    <p class="kicker light">Your ticket</p>
+    <button class="ticket" id="ticket" aria-label="Your ticket. Tap to turn it over.">
+      <span class="face front">
+        <span class="main"><small>Teatro Rosso presents</small><em>Sofia &amp; Adrian</em><strong>Admit two</strong><small>18 · 09 · 2027 · 18:00</small></span>
+        <span class="stub"><span>Row</span><b>A</b><span>Seat</span><b>18</b></span>
+      </span>
+      <span class="face back">
+        <span class="main"><small>Dress code</small><strong>Black tie</strong><p>with a touch of red</p><small class="gap">Please reply by</small><p><b>1 August 2027</b></p></span>
+      </span>
+    </button>
+    <p class="tap">Tap the ticket to turn it over</p>
+  </div>
+
+  <article class="card" id="rsvp">
+    <p class="kicker">Répondez s’il vous plaît</p>
+    <h2>Save your seat</h2>
+    <form id="form" novalidate>
+      <div><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="Full name"></div>
+      <div><span class="lbl">Your reply</span>
+        <div class="choice">
+          <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">I’ll be there</label>
+          <input type="radio" name="att" id="f-no" value="no"><label for="f-no">Sadly not</label>
+        </div>
+      </div>
+      <div><label for="f-count">Seats needed</label><select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+      <div><label for="f-song">A song that gets you dancing</label><input id="f-song" type="text" placeholder="Artist – song"></div>
+      <div><label for="f-diet">Dietary needs</label><input id="f-diet" type="text" placeholder="Vegetarian, allergies…"></div>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" type="submit">Reserve my seat</button>
+    </form>
+    <div class="thanks" aria-live="polite"><h3>Bravo!</h3><p id="thanks-msg"></p></div>
+  </article>
+</div>
+
+<footer class="finale">
+  <p>Curtain call</p>
+  <div class="sig">Sofia &amp; Adrian</div>
+  <p>Florence · 18 September 2027</p>
+</footer>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

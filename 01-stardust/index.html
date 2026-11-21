@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#030308">
+<title>Elena &amp; Marcus · Stardust</title>
+<meta name="description" content="You are invited to the wedding of Elena & Marcus — Saturday 12 June 2027, Château de Lune, Provence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- loading -->
+<div class="loader" id="loader" aria-live="polite">
+  <div class="loader-ring"></div>
+  <p>Gathering stardust…</p>
+</div>
+
+<!-- opening gate -->
+<div class="gate" id="gate">
+  <p class="eyebrow">An invitation written in light</p>
+  <button class="begin" id="begin" aria-label="Open the invitation">
+    <svg viewBox="0 0 220 220" aria-hidden="true">
+      <defs><path id="orbitPath" d="M110,110 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs>
+      <text><textPath href="#orbitPath" textLength="550">elena &amp; marcus · twelve june · two thousand twenty seven ·</textPath></text>
+    </svg>
+    <span class="core"><span>Touch</span><span>to begin</span></span>
+  </button>
+  <p class="hint">Sound on for the full experience</p>
+</div>
+
+<!-- chapter navigation -->
+<nav class="dots" id="dots" aria-label="Chapters"></nav>
+
+<main id="story">
+  <section class="ch" data-label="Invitation" id="ch1">
+    <div class="panel">
+      <p class="eyebrow">You are invited to the wedding of</p>
+      <h1 class="sr-only">Elena &amp; Marcus</h1>
+      <p class="script">Elena &amp; Marcus</p>
+      <div class="rule"><i></i></div>
+      <p class="lead">Saturday, the twelfth of June<br>two thousand and twenty-seven</p>
+      <p class="small">Château de Lune · Provence</p>
+      <p class="scroll-hint">Scroll · the stars will follow</p>
+    </div>
+  </section>
+
+  <section class="ch" data-label="Promise" id="ch2">
+    <div class="panel">
+      <p class="eyebrow">Chapter one</p>
+      <h2>Two rings, one promise</h2>
+      <p>We met under a sky a lot like this one: a rooftop in Lyon, a borrowed telescope, and a conversation that never really ended. Seven years later, we’re making it official, and we want the people who lit up those years to be there.</p>
+      <p class="small">Drag across the sky to scatter the stars.</p>
+    </div>
+  </section>
+
+  <section class="ch" data-label="Date" id="ch3">
+    <div class="panel">
+      <p class="eyebrow">Save the date</p>
+      <h2>Saturday 12 June 2027</h2>
+      <p>The ceremony begins at five in the evening, just as the sun lowers over the lavender fields.</p>
+      <div class="count" aria-label="Countdown to the wedding">
+        <div><b id="cd-d">000</b><span>days</span></div>
+        <div><b id="cd-h">00</b><span>hours</span></div>
+        <div><b id="cd-m">00</b><span>minutes</span></div>
+        <div><b id="cd-s">00</b><span>seconds</span></div>
+      </div>
+      <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Elena%20%26%20Marcus%20%E2%80%94%20Wedding&amp;dates=20270612T150000Z/20270612T230000Z&amp;location=Ch%C3%A2teau%20de%20Lune%2C%20Gordes%2C%20Provence">Add to calendar</a>
+    </div>
+  </section>
+
+  <section class="ch" data-label="Evening" id="ch4">
+    <div class="panel">
+      <p class="eyebrow">The evening</p>
+      <h2>From dusk until the stars fade</h2>
+      <ol class="timeline">
+        <li><time>16:30</time><span class="node"></span><div><h3>Guests arrive</h3><p>Lavender lemonade in the courtyard</p></div></li>
+        <li><time>17:00</time><span class="node"></span><div><h3>The ceremony</h3><p>On the terrace, facing the valley</p></div></li>
+        <li><time>18:00</time><span class="node"></span><div><h3>Champagne at golden hour</h3><p>Canapés and a string quartet</p></div></li>
+        <li><time>20:00</time><span class="node"></span><div><h3>Dinner</h3><p>One long table beneath the olive trees</p></div></li>
+        <li><time>22:00</time><span class="node"></span><div><h3>First dance</h3><p>Then the floor is yours</p></div></li>
+        <li><time>01:00</time><span class="node"></span><div><h3>Carriages</h3><p>Shuttles back to Avignon</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="ch" data-label="Place" id="ch5">
+    <div class="panel">
+      <p class="eyebrow">The place</p>
+      <h2>Château de Lune</h2>
+      <p class="addr">Chemin des Étoiles, 84220 Gordes<br>Provence, France</p>
+      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gordes%2C%20Provence%2C%20France">Open in maps</a>
+      <div class="facts">
+        <div><h3>Getting there</h3><p>Shuttles leave Avignon TGV station at 15:45.</p></div>
+        <div><h3>Dress code</h3><p>Black tie. Midnight tones and a little gold.</p></div>
+        <div><h3>Staying over</h3><p>Rooms are held in Gordes under our names.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" data-label="Reply" id="ch6">
+    <div class="panel" id="rsvp">
+      <p class="eyebrow">Kindly reply by 1 May 2027</p>
+      <h2>Will you join us?</h2>
+      <form id="form" novalidate>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="Full name"></div>
+        <div class="field"><span class="lbl">Your reply</span>
+          <div class="choice">
+            <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">Joyfully accepts</label>
+            <input type="radio" name="att" id="f-no" value="no"><label for="f-no">Regretfully declines</label>
+          </div>
+        </div>
+        <div class="field"><label for="f-count">Number of guests</label>
+          <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+        <div class="field"><label for="f-diet">Dietary needs</label><input id="f-diet" type="text" placeholder="Vegetarian, allergies…"></div>
+        <div class="field"><label for="f-msg">A note for the couple</label><textarea id="f-msg" placeholder="Optional"></textarea></div>
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn" type="submit">Send reply</button>
+      </form>
+      <div class="thanks" aria-live="polite"><p class="script">Thank you</p><p id="thanks-msg"></p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="script">Elena &amp; Marcus</p>
+  <p class="small">12 · 06 · 2027 · Provence</p>
+</footer>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

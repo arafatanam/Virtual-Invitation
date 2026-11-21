@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a110b">
+<title>Nora &amp; Elias · Our Story</title>
+<meta name="description" content="The story of Nora & Elias — and the chapter where you come in. Saturday 2 October 2027, Hartwell House, Edinburgh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Mrs+Saint+Delafield&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="motes" aria-hidden="true"></canvas>
+<div class="lamp" aria-hidden="true"></div>
+
+<main class="desk" id="desk">
+  <p class="intro" id="intro">A little book, written for you</p>
+  <div class="stage" id="stage">
+    <div class="tilt" id="tilt">
+      <div class="book resting" id="book" aria-live="polite"></div>
+    </div>
+  </div>
+  <button class="open-btn" id="openBtn">Open the book</button>
+  <nav class="pager" id="pager" aria-label="Turn pages">
+    <button id="prev" aria-label="Previous page">‹</button>
+    <span id="where">Cover</span>
+    <button id="next" aria-label="Next page">›</button>
+  </nav>
+  <p class="help" id="help">Drag a page corner, tap the edges, or use the arrow keys</p>
+</main>
+
+<button class="music off" id="music" aria-label="Play music" hidden><i></i><i></i><i></i><i></i></button>
+
+<!-- ======================= PAGE TEMPLATES ======================= -->
+<template id="t-cover">
+  <div class="cover">
+    <div class="cover-frame">
+      <svg class="cover-orn top" viewBox="0 0 200 40" aria-hidden="true"><path d="M10 30 Q50 0 100 20 Q150 0 190 30" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="100" cy="20" r="4" fill="currentColor"/><path d="M60 22 q10 -12 20 0 M120 22 q10 -12 20 0" fill="none" stroke="currentColor"/></svg>
+      <p class="cover-kicker">The story of</p>
+      <h1 class="foil">Nora<span>&amp;</span>Elias</h1>
+      <p class="cover-sub">and the chapter where you come in</p>
+      <svg class="cover-orn bottom" viewBox="0 0 200 40" aria-hidden="true"><path d="M10 10 Q50 40 100 20 Q150 40 190 10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="100" cy="20" r="4" fill="currentColor"/></svg>
+      <p class="cover-date">MMXXVII</p>
+    </div>
+  </div>
+</template>
+
+<template id="t-endpaper"><div class="endpaper"><div class="ex-libris"><span>Ex libris</span><b>N &amp; E</b></div></div></template>
+<template id="t-pattern"><div class="endpaper plain"></div></template>
+<template id="t-back"><div class="cover back-cover"><div class="cover-frame"><p class="cover-kicker">To be continued</p><svg class="cover-orn" viewBox="0 0 200 40" aria-hidden="true"><path d="M10 20 H190" stroke="currentColor"/><circle cx="100" cy="20" r="5" fill="currentColor"/></svg></div></div></template>
+
+<template class="pg" data-title="Title page">
+  <div class="page center">
+    <svg class="ill birds" viewBox="0 0 220 120" aria-hidden="true">
+      <path d="M5 92 C60 80 120 96 215 70" fill="none" stroke="#4a3626" stroke-width="2"/>
+      <g fill="none" stroke="#5d7b52" stroke-width="1.4"><path d="M40 86 q-6 -14 6 -20 q4 12 -6 20z"/><path d="M150 82 q8 -12 18 -6 q-8 12 -18 6z"/><path d="M180 76 q2 -16 14 -16 q0 14 -14 16z"/><path d="M20 90 q-10 -6 -6 -18 q10 4 6 18z"/></g>
+      <g fill="#fdf8ee" stroke="#4a3626" stroke-width="1.4">
+        <path d="M84 84 c-14 -2 -18 -18 -6 -26 c6 -4 16 -2 20 6 c4 8 0 20 -14 20z"/><circle cx="96" cy="56" r="8"/><path d="M103 55 l6 2 -6 2"/>
+        <path d="M134 82 c14 -2 18 -18 6 -26 c-6 -4 -16 -2 -20 6 c-4 8 0 20 14 20z"/><circle cx="122" cy="54" r="8"/><path d="M115 53 l-6 2 6 2"/>
+      </g>
+      <path d="M109 38 c-4 -8 -14 -4 -10 4 c2 4 10 8 10 8 s8 -4 10 -8 c4 -8 -6 -12 -10 -4z" fill="#b5523b"/>
+    </svg>
+    <p class="caps">Being the true account of</p>
+    <h2 class="script big">Nora &amp; Elias</h2>
+    <p class="italic">who would very much like you<br>to be in the next chapter</p>
+    <div class="fleuron">❦</div>
+    <p class="caps small">Edinburgh · Two thousand &amp; twenty-seven</p>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter I">
+  <div class="page">
+    <p class="chapter">Chapter I</p>
+    <h2>In which they meet</h2>
+    <p class="dropcap">It was the last day of the autumn book sale, and there was exactly one copy of <i>Persuasion</i> left. Two hands reached for it at once. Nobody let go.</p>
+    <p>They settled it the only fair way: coffee, a long argument about Captain Wentworth, and an agreement to share the book, one chapter each, passed back and forth across the city for a month.</p>
+    <svg class="ill books" viewBox="0 0 200 70" aria-hidden="true"><g fill="#fdf8ee" stroke="#4a3626" stroke-width="1.3">
+      <rect x="40" y="48" width="120" height="14" rx="2"/><rect x="50" y="34" width="104" height="14" rx="2"/><rect x="44" y="20" width="96" height="14" rx="2"/>
+      <path d="M60 20 v14 M70 34 v14 M140 48 v14"/></g><path d="M150 20 c10 -20 30 -10 22 4" fill="none" stroke="#5d7b52" stroke-width="1.3"/><circle cx="174" cy="22" r="3" fill="#b5523b"/></svg>
+    <span class="folio">1</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter II">
+  <div class="page">
+    <p class="chapter">Chapter II</p>
+    <h2>In which a question is asked</h2>
+    <p class="dropcap">Six years, two flats and one very spoiled cat later, Elias hid a ring inside a hollowed-out copy of that same <i>Persuasion</i>.</p>
+    <p>Nora opened it to Chapter Twenty-Three, read the letter tucked inside, and said yes before she reached the end of the page.</p>
+    <svg class="ill ring" viewBox="0 0 200 90" aria-hidden="true">
+      <ellipse cx="100" cy="58" rx="26" ry="24" fill="none" stroke="#b8924a" stroke-width="5"/>
+      <ellipse cx="100" cy="58" rx="26" ry="24" fill="none" stroke="#f1d79a" stroke-width="1.5"/>
+      <path d="M90 30 l10 -14 10 14 -10 10z" fill="#e8f1f6" stroke="#4a3626" stroke-width="1.2"/><path d="M90 30 h20 M100 16 v24" stroke="#4a3626" stroke-width=".6"/>
+      <g stroke="#b8924a" stroke-width="1.2"><path d="M70 14 l6 6 M130 14 l-6 6 M100 2 v6"/></g>
+    </svg>
+    <span class="folio">2</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter III">
+  <div class="page center">
+    <p class="chapter">Chapter III</p>
+    <h2>In which you are invited</h2>
+    <p class="italic">Together with their families,</p>
+    <p class="script mid">Nora Ashdown &amp; Elias Brand</p>
+    <p class="italic">request the pleasure of your company<br>at their wedding</p>
+    <div class="date-block">
+      <span>Saturday</span><b>2</b><span>October</span>
+    </div>
+    <p class="caps">Two thousand &amp; twenty-seven · at three o’clock</p>
+    <div class="count">
+      <div><b class="cd-d">000</b><span>days</span></div><div><b class="cd-h">00</b><span>hours</span></div><div><b class="cd-m">00</b><span>mins</span></div><div><b class="cd-s">00</b><span>secs</span></div>
+    </div>
+    <span class="folio">3</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter IV">
+  <div class="page">
+    <p class="chapter">Chapter IV</p>
+    <h2>In which there is a party</h2>
+    <ol class="toc">
+      <li><span>The ceremony, in the library</span><i></i><time>15:00</time></li>
+      <li><span>Tea, cake &amp; photographs</span><i></i><time>16:00</time></li>
+      <li><span>Drinks in the walled garden</span><i></i><time>17:00</time></li>
+      <li><span>Supper in the great hall</span><i></i><time>18:30</time></li>
+      <li><span>Speeches (mercifully short)</span><i></i><time>20:00</time></li>
+      <li><span>A ceilidh until late</span><i></i><time>21:00</time></li>
+      <li><span>Carriages</span><i></i><time>00:30</time></li>
+    </ol>
+    <p class="italic small center-text">Dancing shoes are strongly encouraged.</p>
+    <span class="folio">4</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter V">
+  <div class="page">
+    <p class="chapter">Chapter V</p>
+    <h2>In which you find your way</h2>
+    <svg class="ill map" viewBox="0 0 240 120" aria-hidden="true">
+      <rect x="2" y="2" width="236" height="116" fill="#f3e8d0" stroke="#4a3626" stroke-width="1"/>
+      <path d="M0 90 C40 70 80 100 120 80 S200 40 240 60" fill="none" stroke="#8fb1c4" stroke-width="7" opacity=".7"/>
+      <path d="M20 20 C60 30 70 60 110 58 S170 40 200 30" fill="none" stroke="#4a3626" stroke-width="1.4" stroke-dasharray="4 4" class="route"/>
+      <g fill="#5d7b52"><circle cx="40" cy="70" r="5"/><circle cx="52" cy="76" r="4"/><circle cx="160" cy="92" r="5"/><circle cx="172" cy="86" r="4"/><circle cx="182" cy="96" r="5"/></g>
+      <path d="M200 14 c-8 0 -12 6 -12 11 c0 8 12 18 12 18 s12 -10 12 -18 c0 -5 -4 -11 -12 -11z" fill="#b5523b"/><circle cx="200" cy="25" r="4" fill="#fdf8ee"/>
+      <text x="20" y="14" font-family="IM Fell English SC, serif" font-size="9" fill="#4a3626">Old Town</text>
+      <text x="150" y="58" font-family="IM Fell English SC, serif" font-size="9" fill="#4a3626">Hartwell House</text>
+      <path d="M222 100 l6 -12 6 12 -6 -4z" fill="#4a3626"/><text x="225" y="112" font-size="7" fill="#4a3626">N</text>
+    </svg>
+    <p><b>Hartwell House</b><br><i>14 Ravelston Dykes Lane, Edinburgh EH4</i></p>
+    <p class="small">Twenty minutes from Waverley station. A coach leaves from the Balmoral at 14:15 and returns at half past midnight.</p>
+    <a class="link-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Edinburgh">Open the map</a>
+    <span class="folio">5</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter VI">
+  <div class="page">
+    <p class="chapter">Chapter VI</p>
+    <h2>In which there are a few notes</h2>
+    <dl class="notes">
+      <dt>What to wear</dt><dd>Formal, with tartan very welcome. October in Scotland can be brisk, so bring a wrap.</dd>
+      <dt>Where to stay</dt><dd>Rooms are held at The Balmoral and at Hartwell itself until 1 August. Mention our names.</dd>
+      <dt>Gifts</dt><dd>Our shelves are full. A contribution to our honeymoon (a bookshop tour of Paris) would be lovely.</dd>
+      <dt>Little ones</dt><dd>Children are very welcome, and there will be a storytelling corner.</dd>
+    </dl>
+    <span class="folio">6</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Chapter VII">
+  <div class="page rsvp-page">
+    <p class="chapter">Chapter VII</p>
+    <h2>In which you reply</h2>
+    <p class="italic small">Kindly reply by the first of August</p>
+    <form class="rsvp" novalidate>
+      <label>Your name<input type="text" name="name" autocomplete="name" placeholder="Write it here"></label>
+      <div class="choice">
+        <label><input type="radio" name="att" value="yes" checked><span>Will be there</span></label>
+        <label><input type="radio" name="att" value="no"><span>Sadly cannot</span></label>
+      </div>
+      <label>Guests in your party
+        <select name="count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+      </label>
+      <label>A song for the ceilidh<input type="text" name="song" placeholder="Optional"></label>
+      <p class="err" role="alert"></p>
+      <button type="submit" class="link-btn">Seal my reply</button>
+    </form>
+    <div class="thanks"><p class="script mid">Thank you</p><p class="thanks-msg"></p><div class="wax">N&amp;E</div></div>
+    <span class="folio">7</span>
+  </div>
+</template>
+
+<template class="pg" data-title="Epilogue">
+  <div class="page center">
+    <p class="chapter">Epilogue</p>
+    <p class="italic">And so the book is nearly full,<br>but the best pages are still blank.</p>
+    <p class="italic">We’d love you to help write them.</p>
+    <div class="fleuron">❦</div>
+    <p class="script big">The end</p>
+    <p class="caps small">is only the beginning</p>
+    <p class="sigs"><span>Nora</span><span>Elias</span></p>
+    <span class="folio">8</span>
+  </div>
+</template>
+
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

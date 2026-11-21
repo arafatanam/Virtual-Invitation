@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050a1a">
+<title>Ingrid &amp; Theo · A Winter Wedding</title>
+<meta name="description" content="Ingrid & Theo are getting married — Saturday 18 December 2027, Frostvik Lodge, Lofoten.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Italianno&family=Josefin+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<div class="loader" id="loader"><div class="flake">❄</div><p>Gathering snow…</p></div>
+
+<div class="gate" id="gate">
+  <p class="label">A winter invitation</p>
+  <h1 class="gate-title">Something wonderful<br><em>is snowing</em></h1>
+  <button class="wake" id="wake"><span class="ring"></span><span class="ring r2"></span><span>Wake the<br>snow globe</span></button>
+  <p class="hint">Sound on. Shake your phone once it’s open.</p>
+</div>
+
+<main>
+  <header class="hero" id="hero">
+    <p class="label">Together with their families</p>
+    <h2 class="names"><span class="w">Ingrid</span><span class="amp">&amp;</span><span class="w">Theo</span></h2>
+    <p class="sub">are getting married under the northern lights</p>
+    <div class="hero-space" aria-hidden="true"></div>
+    <div class="hero-actions">
+      <span class="drag-tip">Swipe sideways to spin it</span>
+    </div>
+  </header>
+
+  <section class="panel">
+    <p class="label">The invitation</p>
+    <h3>Come north with us</h3>
+    <p>In the darkest week of the year, when the sun barely rises over Lofoten, we’ll light every candle we can find and say our vows in a little birch chapel by the sea.</p>
+    <p>Then we’ll eat, dance and, if we’re lucky, watch the aurora together.</p>
+  </section>
+
+  <section class="panel">
+    <p class="label">Save the date</p>
+    <h3>Saturday<br>18 December 2027</h3>
+    <div class="count">
+      <div><b id="cd-d">000</b><span>days</span></div>
+      <div><b id="cd-h">00</b><span>hours</span></div>
+      <div><b id="cd-m">00</b><span>mins</span></div>
+      <div><b id="cd-s">00</b><span>secs</span></div>
+    </div>
+    <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ingrid%20%26%20Theo%20%E2%80%94%20Wedding&amp;dates=20271218T130000Z/20271218T220000Z&amp;location=Frostvik%20Lodge%2C%20Lofoten">Add to calendar</a>
+  </section>
+
+  <section class="panel">
+    <p class="label">The day</p>
+    <h3>From first light to aurora</h3>
+    <ol class="steps">
+      <li><time>14:00</time><div><b>Sleighs from the harbour</b><span>Blankets and reindeer provided</span></div></li>
+      <li><time>15:00</time><div><b>The ceremony</b><span>In the birch chapel, by candlelight</span></div></li>
+      <li><time>16:00</time><div><b>Cider by the fire pits</b><span>Hot, spiced and endless</span></div></li>
+      <li><time>17:30</time><div><b>Dinner in the lodge</b><span>Arctic char, cloudberries and toasts</span></div></li>
+      <li><time>20:00</time><div><b>Aurora watch &amp; dancing</b><span>We’ll wake you if the sky lights up</span></div></li>
+    </ol>
+  </section>
+
+  <section class="panel">
+    <p class="label">The place</p>
+    <h3>Frostvik Lodge</h3>
+    <p class="addr">Frostvikveien 12, 8390 Reine<br>Lofoten, Norway</p>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Reine%2C%20Lofoten%2C%20Norway">Open in maps</a>
+    <div class="facts">
+      <div><b>Getting there</b><span>Fly to Leknes. Our shuttle meets every flight on the 17th and 18th.</span></div>
+      <div><b>What to wear</b><span>Winter formal. Bring a warm coat; we’ll have wool blankets and boots to borrow.</span></div>
+      <div><b>Staying over</b><span>Every guest has a cabin at the lodge for two nights. It’s on us.</span></div>
+    </div>
+  </section>
+
+  <section class="panel" id="rsvp">
+    <p class="label">Kindly reply by 1 October 2027</p>
+    <h3>Will you come north?</h3>
+    <form id="form" novalidate>
+      <label for="f-name">Your name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Full name">
+      <div class="choice" role="radiogroup" aria-label="Your reply">
+        <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">Wouldn’t miss it</label>
+        <input type="radio" name="att" id="f-no" value="no"><label for="f-no">Can’t make it</label>
+      </div>
+      <label for="f-count">Number of guests</label>
+      <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+      <label for="f-diet">Dietary needs</label>
+      <input id="f-diet" type="text" placeholder="Optional">
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" type="submit">Send my reply</button>
+    </form>
+    <div class="thanks" aria-live="polite"><p class="script">Tusen takk</p><p id="thanks-msg"></p></div>
+  </section>
+
+  <footer>
+    <p class="script">Ingrid &amp; Theo</p>
+    <p class="label">18 · 12 · 2027 · Lofoten</p>
+  </footer>
+</main>
+
+<div class="dock" id="dock" hidden>
+  <button class="shake" id="shake" aria-label="Shake the snow globe">❄ Shake</button>
+  <button class="music" id="music" aria-label="Pause music"><i></i><i></i><i></i><i></i></button>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
