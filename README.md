@@ -19,6 +19,9 @@ The invitations are in two collections:
 | 06 | Gaye Holud | [open](https://arafatanam.github.io/Virtual-Invitation/desi/06-holud/) | A bright daytime design with blooming 3D marigolds, swinging garland ropes and turmeric splashes on every tap. |
 | 07 | Shahi Biye (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/07-darbar/) | Haggle over the gate-dhora fee and snip the ribbon, then walk the red carpet through a darbar hall with crystal chandeliers to the couple’s stage. |
 | 08 | Jamdani (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/08-jamdani/) | A handloom weaves the invitation thread by thread in jamdani motifs, then the cloth lifts off as a flowing 3D sari. |
+| 09 | Jewel Box (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/09-jewel-box/) | A burgundy velvet box opens to a music-box melody. A faceted diamond ring rises from the satin, and each celebration swaps the stone (citrine, diamond, ruby, emerald, sapphire). |
+| 10 | Gold Foil (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/10-gold-foil/) | A luxury stationery suite. Break the gold seal and the card slides out of an emerald envelope. The gold foil catches the light as you tilt your phone, and the remaining cards are dealt out as you scroll. |
+| 11 | Royal Peacock (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/11-peacock/) | A Mughal peacock fan of iridescent 3D feathers sweeps open around a gold monogram medallion. Tap it and the peacock rattles its train. |
 
 ## Western collection
 
@@ -58,6 +61,8 @@ All names, dates and venues are placeholders.
   - desi/02 — `makeNames()`
   - desi/04 — `buildNameMask()`
   - desi/08 — `buildMask()`
+  - desi/09 — the `lining` canvas
+  - desi/11 — `faceTex`
 
 ## RSVP
 

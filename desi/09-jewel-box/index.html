@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070407">
+<title>Anika &amp; Zayan · The Wedding</title>
+<meta name="description" content="Anika & Zayan — a royal wedding, Friday 21 April 2028, Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Italiana&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<div class="gate" id="gate">
+  <p class="kicker">A royal wedding</p>
+  <h1 class="gate-names">Anika <span>&amp;</span> Zayan</h1>
+  <p class="gate-date">21 · 04 · 2028</p>
+  <button class="cta" id="open">Open the box</button>
+  <p class="hint">Sound on</p>
+</div>
+
+<main>
+  <header class="stop" data-gem="diamond">
+    <div class="card">
+      <p class="tiny">In the name of Allah, the Most Gracious, the Most Merciful</p>
+      <p class="kicker">Together with their families</p>
+      <h2 class="names">Anika <i>&amp;</i> Zayan</h2>
+      <p>invite you to celebrate their marriage, a promise as lasting as the stones in this box.</p>
+      <p class="cue">Scroll · every celebration has its own jewel</p>
+    </div>
+  </header>
+
+  <section class="stop" data-gem="citrine"><article class="card">
+    <p class="gem-name"><i style="--g:#ffc23a"></i>Citrine</p>
+    <h3>The Holud</h3><p class="when">Wednesday, 19 April · six in the evening</p>
+    <p>Golden light, marigolds and music under the trees.</p><p class="where">The Garden Terrace, Gulshan</p>
+  </article></section>
+
+  <section class="stop" data-gem="diamond"><article class="card">
+    <p class="gem-name"><i style="--g:#f4f6ff"></i>Diamond</p>
+    <h3>The Nikah</h3><p class="when">Friday, 21 April · after Jumu’ah</p>
+    <p>An intimate ceremony with both families, followed by duas and lunch.</p><p class="where">The Pearl Room, Radisson Blu Water Garden</p>
+  </article></section>
+
+  <section class="stop" data-gem="ruby"><article class="card">
+    <p class="gem-name"><i style="--g:#e0115f"></i>Ruby</p>
+    <h3>The Wedding Reception</h3><p class="when">Friday, 21 April · eight in the evening</p>
+    <p>A grand dinner, the couple’s entrance and a night to remember.</p><p class="where">The Grand Ballroom, Radisson Blu Water Garden</p>
+  </article></section>
+
+  <section class="stop" data-gem="emerald"><article class="card">
+    <p class="gem-name"><i style="--g:#1fa36b"></i>Emerald</p>
+    <h3>The Walima</h3><p class="when">Sunday, 23 April · eight in the evening</p>
+    <p>Zayan’s family welcomes Anika with a dinner in her honour.</p><p class="where">The Emerald Hall, Gulshan Club</p>
+  </article></section>
+
+  <section class="stop" data-gem="sapphire"><div class="card">
+    <p class="gem-name"><i style="--g:#3f6bff"></i>Sapphire</p>
+    <h3>Until the Day</h3>
+    <div class="count">
+      <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>minutes</span></div><div><b id="cd-s">00</b><span>seconds</span></div>
+    </div>
+    <p>Dress code: black tie. Jewels encouraged.</p>
+    <div class="row">
+      <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Anika%20%26%20Zayan%20%E2%80%94%20Wedding%20Reception&amp;dates=20280421T140000Z/20280421T180000Z&amp;location=Radisson%20Blu%20Water%20Garden%20Dhaka">Add to calendar</a>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Radisson%20Blu%20Water%20Garden%20Dhaka">Directions</a>
+    </div>
+  </div></section>
+
+  <section class="stop end" id="rsvp" data-gem="diamond"><div class="card rsvp">
+    <p class="kicker">Kindly reply by 21 March 2028</p>
+    <h3>Will you be with us?</h3>
+    <form id="form" novalidate>
+      <label for="f-name">Name</label>
+      <input id="f-name" type="text" autocomplete="name" placeholder="Your full name">
+      <div class="choice" role="radiogroup" aria-label="Attendance">
+        <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">With pleasure</label>
+        <input type="radio" name="att" id="f-no" value="no"><label for="f-no">With regret</label>
+      </div>
+      <label for="f-count">Guests</label>
+      <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn big" type="submit">Send reply</button>
+    </form>
+    <div class="thanks" aria-live="polite"><p class="names small">Thank you</p><p id="thanks-msg"></p></div>
+  </div></section>
+
+  <footer><p class="names small">Anika <i>&amp;</i> Zayan</p><p class="kicker">21 · 04 · 2028 · Dhaka</p></footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a241d">
+<title>Inaya &amp; Rayan · The Wedding</title>
+<meta name="description" content="Inaya Rahman & Rayan Chowdhury — Saturday 4 March 2028, The Westin Dhaka.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="dust" aria-hidden="true"></canvas>
+
+<div class="gate" id="gate">
+  <p class="gate-kicker">You have received an invitation</p>
+  <div class="envelope" id="envelope">
+    <div class="env-back"></div>
+    <div class="card mini" id="mini"><p class="foil script">Inaya &amp; Rayan</p></div>
+    <div class="env-front"></div>
+    <div class="flap"><div class="flap-out"></div><div class="flap-in"></div></div>
+    <button class="seal" id="seal" aria-label="Break the seal and open the envelope"><span class="foil">I<i>&amp;</i>R</span></button>
+  </div>
+  <p class="gate-hint" id="gateHint">Tap the seal to open · sound on</p>
+</div>
+
+<main>
+  <section class="suite hero">
+    <article class="card main-card tilt">
+      <div class="sheen"></div>
+      <p class="tiny">In the name of Allah, the Most Gracious, the Most Merciful</p>
+      <div class="crest foil" aria-hidden="true">I<span>&amp;</span>R</div>
+      <p class="small">Together with their families</p>
+      <h1 class="names"><span class="foil script">Inaya Rahman</span><span class="and">and</span><span class="foil script">Rayan Chowdhury</span></h1>
+      <p class="body">request the pleasure of your company<br>at the celebration of their marriage</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="date foil">Saturday, the fourth of March</p>
+      <p class="year">Two thousand and twenty-eight</p>
+      <p class="body">at seven o’clock in the evening</p>
+      <p class="venue">The Grand Ballroom<br>The Westin, Dhaka</p>
+      <p class="attire">Black tie</p>
+    </article>
+    <p class="hint">Tilt your phone to catch the foil · scroll for the full suite</p>
+  </section>
+
+  <section class="suite">
+    <article class="card detail tilt">
+      <div class="sheen"></div>
+      <p class="label">Card II</p>
+      <h2 class="foil">The Celebrations</h2>
+      <div class="ev"><h3>The Holud Evening</h3><p class="when">Thursday, 2 March · seven o’clock</p><p>A garden evening in marigold and silk, with music by both families.</p><p class="where">The Courtyard, Gulshan</p></div>
+      <div class="orn" aria-hidden="true"></div>
+      <div class="ev"><h3>The Nikah Ceremony</h3><p class="when">Saturday, 4 March · after Asr</p><p>An intimate ceremony with family and the qazi, followed by duas.</p><p class="where">The Pavilion, The Westin Dhaka</p></div>
+      <div class="orn" aria-hidden="true"></div>
+      <div class="ev"><h3>The Wedding Reception</h3><p class="when">Saturday, 4 March · seven o’clock</p><p>Dinner, the couple’s entrance and a string quartet.</p><p class="where">The Grand Ballroom</p></div>
+      <div class="orn" aria-hidden="true"></div>
+      <div class="ev"><h3>The Walima Dinner</h3><p class="when">Monday, 6 March · eight o’clock</p><p>Hosted by the Chowdhury family.</p><p class="where">Le Méridien, Dhaka</p></div>
+    </article>
+  </section>
+
+  <section class="suite">
+    <article class="card detail tilt">
+      <div class="sheen"></div>
+      <p class="label">Card III</p>
+      <h2 class="foil">Counting the Days</h2>
+      <div class="count">
+        <div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>minutes</span></div><div><b id="cd-s">00</b><span>seconds</span></div>
+      </div>
+      <div class="orn" aria-hidden="true"></div>
+      <p class="body">Guests travelling from abroad have a room block at The Westin Dhaka. Please mention the Rahman–Chowdhury wedding when booking.</p>
+      <div class="row">
+        <a class="btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Inaya%20%26%20Rayan%20%E2%80%94%20Wedding%20Reception&amp;dates=20280304T130000Z/20280304T170000Z&amp;location=The%20Westin%20Dhaka">Add to calendar</a>
+        <a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Westin%20Dhaka">Directions</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="suite" id="rsvp">
+    <article class="card detail reply tilt">
+      <div class="sheen"></div>
+      <p class="label">Répondez s’il vous plaît</p>
+      <h2 class="foil">The Favour of a Reply</h2>
+      <p class="body">is requested by the first of February</p>
+      <form id="form" novalidate>
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" autocomplete="name" placeholder="Your full name">
+        <div class="choice" role="radiogroup" aria-label="Attendance">
+          <input type="radio" name="att" id="f-yes" value="yes" checked><label for="f-yes">Joyfully accepts</label>
+          <input type="radio" name="att" id="f-no" value="no"><label for="f-no">Regretfully declines</label>
+        </div>
+        <label for="f-count">Number of guests</label>
+        <select id="f-count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn big" type="submit">Send reply</button>
+      </form>
+      <div class="thanks" aria-live="polite"><p class="foil script big">Thank you</p><p class="body" id="thanks-msg"></p></div>
+    </article>
+  </section>
+
+  <footer><p class="foil light script">Inaya &amp; Rayan</p><p class="small">04 · 03 · 2028 · Dhaka</p></footer>
+</main>
+
+<button class="music" id="music" aria-label="Pause music" hidden><i></i><i></i><i></i></button>
+
+<script src="vendor/music.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
