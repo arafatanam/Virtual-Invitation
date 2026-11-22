@@ -15,7 +15,7 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { background: var(--paper); }
+html { background: var(--paper); scroll-snap-type: y mandatory; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.5; overflow-x: hidden; -webkit-font-smoothing: antialiased; font-variant-numeric: lining-nums; }
 body.locked { overflow: hidden; height: 100svh; }
 #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
@@ -55,7 +55,7 @@ p { margin: 0; }
 
 /* ---------- stops ---------- */
 main { position: relative; z-index: 2; padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right)); }
-.stop { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 15svh 0 5svh; }
+.stop { scroll-snap-align: start; scroll-snap-stop: always; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 15svh 0 5svh; }
 .card { position: relative; width: 100%; max-width: 360px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;
   opacity: 0; transform: translateY(30px); filter: blur(6px); transition: opacity 1.2s, transform 1.4s cubic-bezier(.2,.8,.2,1), filter 1.2s; }
 .card::before { content: ''; position: absolute; inset: -8% -14%; z-index: -1; pointer-events: none;
