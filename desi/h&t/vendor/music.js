@@ -99,6 +99,27 @@ window.createMusic = function (song) {
     src.connect(g); g.connect(master); src.start(t); src.stop(t + dur + .05);
   }
 
+
+  // iPhones mute Web Audio when the ring/silent switch is on. Declaring a "playback" audio session
+  // (Safari 17+) and keeping a silent <audio> element playing both switch iOS to media playback,
+  // so the music is heard in silent and vibrate mode too. Must run inside the tap that starts the music.
+  let silentEl = null;
+  function iosPlayback() {
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+    try {
+      if (!silentEl) {
+        const sr = 8000, n = sr, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+        const w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+        w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+        v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+        silentEl = document.createElement('audio');
+        silentEl.src = URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+        silentEl.loop = true; silentEl.setAttribute('playsinline', ''); silentEl.setAttribute('x-webkit-airplay', 'deny');
+      }
+      const p = silentEl.play(); if (p) p.catch(() => {});
+    } catch (e) {}
+  }
+
   function tick() {
     while (next < ctx.currentTime + .4) { song.play(step, next, tone, noise, pluck); step++; next += song.spb; }
   }
@@ -123,6 +144,7 @@ window.createMusic = function (song) {
     },
     start() {
       try {
+        iosPlayback();
         if (!ctx) init();
         ctx.resume(); playing = true;
         next = Math.max(next, ctx.currentTime + .05);
@@ -134,6 +156,7 @@ window.createMusic = function (song) {
     },
     stop() {
       if (!ctx) return; playing = false;
+      if (silentEl) silentEl.pause();
       master.gain.cancelScheduledValues(ctx.currentTime);
       master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
       master.gain.linearRampToValueAtTime(0, ctx.currentTime + .6);
