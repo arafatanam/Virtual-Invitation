@@ -6,57 +6,50 @@
 <meta name="theme-color" content="#f4ecdf">
 <title>Hamza &amp; Tahia · Our Story</title>
 <meta name="description" content="Hamza & Tahia — an illustrated invitation. Holud, Reception and Walima, 30 December 2026 to 3 January 2027, Chattogram.">
+<meta property="og:title" content="Hamza & Tahia · Our Story">
+<meta property="og:description" content="Holud · Reception · Walima — 30 December 2026 to 3 January 2027, Chattogram">
+<meta property="og:image" content="img/01-cover.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Marcellus&display=swap">
+<link rel="preload" as="image" href="img/01-cover.webp">
+<link rel="preload" as="image" href="img/02-lane-day.webp">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="locked">
 
 <div id="stage" aria-hidden="true">
-  <div class="scene" id="s-lane">
-    <img id="laneDay" alt=""><img id="laneNight" alt="">
-    <svg id="laneWin" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"></svg>
-  </div>
-  <div class="scene" id="s-room"><img id="roomImg" alt=""></div>
-  <div class="scene" id="s-river">
-    <img id="riverImg" alt="">
-    <svg id="riverFx" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"></svg>
-  </div>
-  <div class="scene" id="s-ghat"><img id="ghatImg" alt=""></div>
-  <div class="scene" id="s-arch">
-    <img id="archImg" alt="">
-    <svg id="walkSvg" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"></svg>
-  </div>
-  <div class="scene" id="s-events"><img id="eventsImg" alt=""></div>
-  <div class="scene" id="s-finale">
-    <img id="finaleImg" alt="">
-    <svg id="swingSvg" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"></svg>
-  </div>
+  <div class="scene" id="s-lane"><div class="kb"><img src="img/02-lane-day.webp" alt="" fetchpriority="high"><img id="laneNight" src="img/03-lane-night.webp" alt=""></div></div>
+  <div class="scene" id="s-room"><div class="kb"><img src="img/04-room.webp" alt=""></div></div>
+  <div class="scene" id="s-river"><div class="kb"><img src="img/05a-river-empty.webp" alt=""><img class="sprite" id="boat" src="img/05b-boat.webp" alt=""></div></div>
+  <div class="scene" id="s-ghat"><div class="kb"><img src="img/06-ghat-night.webp" alt=""></div></div>
+  <div class="scene" id="s-arch"><div class="kb"><img src="img/07-arch.webp" alt=""><img class="sprite" id="walkers" src="img/07b-couple.webp" alt=""></div></div>
+  <div class="scene" id="s-events"><div class="kb"><img src="img/08-celebrations-bg.webp" alt=""></div></div>
+  <div class="scene" id="s-finale"><div class="kb"><img src="img/09-finale-swing.webp" alt=""></div></div>
+  <canvas id="fx"></canvas>
 
   <div id="cardLayer">
     <div id="cardWrap">
       <div class="env-back"></div>
       <div id="cardMove">
         <div class="card-top">
-          <svg class="vine" viewBox="0 0 120 16"><path d="M4 8 Q30 -2 60 8 Q90 18 116 8" stroke="#7d8f5a" fill="none" stroke-width="1.2"/><g fill="#d01f5f"><circle cx="60" cy="8" r="2.6"/><circle cx="34" cy="4" r="1.8"/><circle cx="86" cy="12" r="1.8"/></g><g fill="#7d8f5a"><ellipse cx="22" cy="6" rx="4" ry="1.6"/><ellipse cx="98" cy="10" rx="4" ry="1.6"/></g></svg>
+          <svg class="vine" viewBox="0 0 120 16"><path d="M4 8 Q30 -2 60 8 Q90 18 116 8" stroke="#7d8f5a" fill="none" stroke-width="1.2"/><g fill="#c2185b"><circle cx="60" cy="8" r="2.6"/><circle cx="34" cy="4" r="1.8"/><circle cx="86" cy="12" r="1.8"/></g><g fill="#7d8f5a"><ellipse cx="22" cy="6" rx="4" ry="1.6"/><ellipse cx="98" cy="10" rx="4" ry="1.6"/></g></svg>
           <p>Join us for our<br>wedding celebrations</p>
         </div>
-        <div class="card-bot"><img id="cardImg" alt=""><i class="back"></i></div>
+        <div class="card-bot"><img src="img/05-river.webp" alt=""></div>
       </div>
-      <div class="env-front"></div>
+      <div class="env-front"><span>H &amp; T</span></div>
       <div class="env-flap"></div>
     </div>
   </div>
 </div>
 
-<!-- words that sit on top of the pictures -->
 <div id="ui">
   <section class="gate" id="gate">
-    <p class="pre">Preparing your invitation</p>
+    <p class="pre">You are invited</p>
     <p class="mono">Hamza <span>&amp;</span> Tahia</p>
     <p class="gdate">30 · 12 · 2026 &nbsp;—&nbsp; 03 · 01 · 2027</p>
-    <button class="pill solid" id="open">Open the invitation</button>
+    <button class="pill solid" id="open" disabled>Preparing…</button>
     <p class="sound">Best with sound on</p>
   </section>
 
@@ -109,7 +102,6 @@
 <div id="track"></div>
 
 <script src="vendor/music.js"></script>
-<script src="js/art.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

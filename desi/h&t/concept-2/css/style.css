@@ -9,10 +9,11 @@ p, h2, h3 { margin: 0; }
 #track > div { height: 100svh; scroll-snap-align: start; scroll-snap-stop: always; }
 #stage { position: fixed; inset: 0; overflow: hidden; background: #f4ecdf; }
 .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; visibility: hidden; will-change: transform, opacity; }
-.scene > img, .scene > svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.kb { position: absolute; inset: 0; will-change: transform; }
+.kb > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.kb > img.sprite { inset: auto; left: 0; top: 0; width: auto; height: auto; object-fit: fill; will-change: transform; transform-origin: 0 0; }
 #laneNight { opacity: 0; }
-.gl { animation: tw 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-@keyframes tw { 0%, 100% { opacity: .05; transform: scale(.4); } 50% { opacity: .95; transform: scale(1); } }
+#fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 
 /* ---------- the envelope and folded card ---------- */
 #cardLayer { position: absolute; inset: 0; pointer-events: none; visibility: hidden; }
@@ -25,9 +26,10 @@ p, h2, h3 { margin: 0; }
 .card-bot { top: 50%; transform-origin: top center; backface-visibility: hidden; padding: calc(6 * var(--u)); padding-top: 0; box-shadow: 0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(60,30,10,.25); }
 .card-bot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .env-back, .env-front, .env-flap { position: absolute; left: calc(-7 * var(--u)); top: calc(142 * var(--u)); width: calc(150 * var(--u)); height: calc(104 * var(--u)); }
-.env-back { background: #b9d3e6; z-index: 1; }
-.env-front { z-index: 3; background: linear-gradient(160deg, #cfe2f0, #a9c6dc); clip-path: polygon(0 18%, 50% 62%, 100% 18%, 100% 100%, 0 100%); box-shadow: 0 6px 14px rgba(0,0,0,.25); }
-.env-flap { z-index: 4; height: calc(62 * var(--u)); background: linear-gradient(#c3d9ea, #9fbfd6); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; }
+.env-back { background: #d9c7a6; z-index: 1; }
+.env-front { z-index: 3; background: linear-gradient(160deg, #f6eedf, #e6d6bb); clip-path: polygon(0 18%, 50% 62%, 100% 18%, 100% 100%, 0 100%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: calc(12 * var(--u)); }
+.env-front span { font: 400 calc(18 * var(--u)) var(--script); color: #9a6a2a; }
+.env-flap { z-index: 4; height: calc(62 * var(--u)); background: linear-gradient(#efe3cc, #dcc8a5); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; }
 
 /* ---------- words ---------- */
 #ui { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
@@ -57,7 +59,9 @@ p, h2, h3 { margin: 0; }
 
 /* gate */
 .gate { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; text-align: center;
-  background: #f6efe2 center / cover no-repeat; pointer-events: auto; }
+  background: #f6efe2 url(../img/01-cover.webp) center / cover no-repeat; pointer-events: auto; }
+.gate > * { text-shadow: 0 0 3px #fffaf0, 0 0 10px rgba(255,250,240,.95), 0 0 22px rgba(255,248,236,.8); }
+.pill:disabled { opacity: .65; }
 .gate .pre { font: italic 400 15px var(--serif); color: #8b7356; }
 .mono { font: 400 clamp(52px, 15vw, 80px) / 1.05 var(--script); color: #8a6636; }
 .mono span { color: #b0566e; font-size: .7em; }

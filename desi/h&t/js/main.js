@@ -564,11 +564,12 @@ addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { tilted =
 
 /* ---------- frame ---------- */
 let last = performance.now();
+const perf = { acc: 0, n: 0, pr: renderer.getPixelRatio() };
 function frame() {
   const now = performance.now(), dt = clamp((now - last) / 1000, 0, .05), t = now / 1000; last = now;
   const oa = opened ? (SETTLE || reduce ? 1 : clamp((now - openStart) / 2900, 0, 1)) : 0;
   const ob = opened ? (SETTLE || reduce ? 1 : clamp((now - openStart - 380) / 2900, 0, 1)) : 0;
-  const tw = targetW(), kk = SETTLE ? 1 : 1 - Math.exp(-dt * 2.4);
+  const tw = targetW(), kk = SETTLE ? 1 : 1 - Math.exp(-dt * 1.9);
   for (let i = 0; i < 4; i++) W[i] += (tw[i] - W[i]) * kk;
   const dip = (1 - Math.max(...W)) * .5;
   curtains.forEach(({ mat, layer }) => { const u = mat.uniforms; u.uT.value = t; u.uOpen.value = layer ? ease(oa) * (1 - dip * .8) : ease(ob) * (1 - dip * .45); applyLook(mat, layer, false); });
@@ -590,6 +591,10 @@ function frame() {
   cx += (tx - cx) * (1 - Math.exp(-dt * 2)); cy += (ty - cy) * (1 - Math.exp(-dt * 2));
   camera.position.set(cx * .16, -cy * .1, CZ); camera.lookAt(0, 0, 0);
   renderer.render(scene, camera);
+  // keep it fluid on slower phones: if frames run long for a while, render at a lower pixel ratio
+  if (!SETTLE) { perf.acc += dt; perf.n++; if (perf.acc > 1.5) { const avg = perf.acc / perf.n;
+    if (avg > .024 && perf.pr > 1) { perf.pr = Math.max(1, perf.pr - .25); renderer.setPixelRatio(perf.pr); resize(); }
+    perf.acc = 0; perf.n = 0; } }
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
@@ -608,7 +613,7 @@ addEventListener('pointerdown', e => { if (!opened || e.target.closest('a, butto
 /* ================= scroll: reveal each card, chime when the look changes ================= */
 function onScroll() {
   if (!opened) return;
-  stops.forEach(s => { const r = s.getBoundingClientRect(); if (r.top < innerHeight * .78 && r.bottom > innerHeight * .2) s.classList.add('in'); });
+  stops.forEach(s => { const r = s.getBoundingClientRect(); s.classList.toggle('in', r.top < innerHeight * .7 && r.bottom > innerHeight * .3); });
   const w = targetW(), th = w.indexOf(Math.max(...w));
   if (th !== lastTheme && Math.max(...w) > .9) { lastTheme = th; kick = .8; swish(); setTimeout(() => chime([74, 74, 69, 71][th] || 74), 250); }
 }
