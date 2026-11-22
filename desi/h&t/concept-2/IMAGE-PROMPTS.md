@@ -122,3 +122,38 @@ Attach image 02 and say:
 | 09-finale-swing.jpg | yes | scene 8 |
 
 If you'd like a photo gallery scene (as in the video), add the couple's own photos to the same folder as `photo-1.jpg`, `photo-2.jpg` and so on.
+
+---
+
+# Round 2: extra images to match the video even more closely
+
+Put these in the same `images/` folder. Each one is optional, and the invitation already works without them. When you add them, tell me and I'll wire them in.
+
+## 02b · The lane at dusk (edit image 02)
+**File:** `02b-lane-dusk.jpg`
+
+In the video, the sky passes through a twilight stage between sunset and night. This image adds that middle step. Attach image 02 and say:
+
+> Keep this exact image, the same composition, buildings, camera, plants and Hamza, but move the time to dusk, just after sunset. The sun has gone below the skyline. The sky is a soft gradient from lavender-violet at the top through dusty rose to a thin band of amber at the horizon. The first two or three stars are appearing, and a pale full moon is rising low between the buildings. The street lamps are just switching on with a faint glow, and the distant windows show the first warm lights. **The cobalt-blue shutters on the right-hand window stay closed.** Keep the same hand-painted gouache-and-watercolour storybook style. Portrait 9:16. No text, letters, numbers, watermark, logo or signature anywhere in the image.
+
+## 04b · Tahia holding the card (edit image 04)
+**File:** `04b-room-holding.jpg`
+
+This makes the card look truly held rather than floating. Attach image 04 and say:
+
+> Keep this exact image, the same room, camera, chandelier, palm and Tahia, but now she holds **a single plain blank cream card upright** in her raised right hand, as if reading it. The card is portrait-shaped (about 3 wide by 4 tall), clearly visible, and about a quarter of the image wide, in the centre-right of the image. **Her thumb and fingertips hold it only along its bottom edge**, so the whole front face of the card is visible and unobstructed. **The card face is completely blank, plain cream paper with no text, no pattern and no picture.** The card is slightly tilted toward her, with soft lamplight on it and a faint shadow of her fingers. Keep the same hand-painted gouache-and-watercolour storybook style. Portrait 9:16. No text, letters, numbers, watermark, logo or signature anywhere in the image.
+
+*(I'll fit the animated card, its unfolding and the dive into the river exactly onto that blank card.)*
+
+## 06b · Floral garland divider
+**File:** `06b-garland.png`
+
+In the video, a band of flowers bridges the night steps and the arch. This image provides it.
+
+> A single long horizontal garland, seen straight on and filling the full width: dense magenta bougainvillea, red and blush roses, white jasmine strands hanging down a little, green leaves and a few tiny gold bells. Isolated on a pure flat white background, with no shadow and nothing else in the image. Hand-painted gouache-and-watercolour storybook illustration in the style of a premium South Asian wedding invitation. Rich, saturated, jewel-like colours and visible soft brush texture. Wide landscape format, 3:1. No text, letters, numbers, watermark, logo or signature anywhere in the image.
+
+## Photo gallery (as in the video)
+Add 3 to 5 of the couple's own photos as `photo-1.jpg`, `photo-2.jpg` and so on. Portrait or square works best. I'll show them as a polaroid-style scrapbook between the celebrations and the countdown, under the line "Your presence and blessings would mean a lot to us."
+
+## Parents' names (as in the video)
+These aren't images. In the night scene, the video shows "son of Mr … & Mrs …" and "daughter of Mr … & Mrs …". Send me the names and I'll add them under Hamza and Tahia.

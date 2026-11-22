@@ -1,23 +1,25 @@
 /* Hamza & Tahia — concept 2 engine.
-   A stack of full-screen snap points, one per scene. Native scroll + scroll-snap decides WHICH scene you
-   are on; the picture then glides there on its own clock (dp follows the scroll position smoothly),
-   so one swipe always plays one whole, clean transition.
-   The paintings are 1536 × 2752 portraits; positions below are fractions of that frame. */
+   One continuous timeline scrubbed by the scroll position, like a video: scroll slowly and it plays slowly,
+   fling it and it plays fast, scroll back and it rewinds. Positions on the timeline are in "screens"
+   (1 = one screen-height of scrolling). The paintings are 1536 × 2752; scene positions are fractions of that frame.
+
+   0.0  sunset lane · names            3.8  her room · the folded card opens in her hand
+   0.5  sunset → dusk → night           5.0  we fly into the card's painting → the river
+   1.9  night · blessings               6.0  the boat glides up-river
+   2.9  dive into her window            7.5  the ghat at night · "Our celebration awaits"
+   8.6  page turns to the arch · the couple walk in · 11.0 the celebrations · 12.9 the finale */
 (() => {
 'use strict';
 const el = id => document.getElementById(id);
 const SETTLE = location.hash.startsWith('#settle');
 const FORCE = (location.hash.match(/dp=([\d.]+)/) || [])[1];
-if (SETTLE) document.documentElement.classList.add('settle');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, t) => a + (b - a) * t;
-const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const ss = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
 const eio = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-const ein = t => t * t * t;
 const rand = (a, b) => a + Math.random() * (b - a);
-const N = 9;   // gate, lane-day, lane-night, room, river, ghat, arch, celebrations, finale
-const IW = 1536, IH = 2752;
+const IW = 1536, IH = 2752, END = 13.9;
 
 /* ---------- music: santoor-like melody in a Yaman colour over a tanpura drone and a soft dadra ---------- */
 const SC = [62, 64, 66, 68, 69, 71, 73, 74, 76, 78, 81, 83];
@@ -34,43 +36,56 @@ const music = createMusic({ spb: .27, reverb: .6, volume: .8, fadeIn: 3, play(st
 }});
 const musicBtn = el('music');
 musicBtn.addEventListener('click', () => { const on = music.toggle(); musicBtn.textContent = on ? 'Pause music' : 'Play music'; });
-const chime = () => music.sfx((t, tone, noise, pluck) => { [74, 78, 81, 86].forEach((m, i) => pluck(m, t + i * .08, { vol: .06, bright: .9, dur: 1.6 })); });
-const rustle = () => music.sfx((t, tone, noise) => { for (let i = 0; i < 10; i++) noise(t + i * .05, { dur: .12, vol: .02, freq: 2500 + i * 200, type: 'bandpass', q: 1 }); });
+const rustle = () => music.sfx((t, tone, noise) => { for (let i = 0; i < 12; i++) noise(t + i * .045, { dur: .12, vol: .022, freq: 2400 + i * 180, type: 'bandpass', q: 1 }); });
 
-/* ---------- snap track ---------- */
+/* ---------- the scroll track ---------- */
 const track = el('track');
-for (let i = 0; i < N; i++) track.appendChild(document.createElement('div'));
-const secH = () => track.firstElementChild.offsetHeight || innerHeight;
+const sizeTrack = () => { track.style.height = (END + 1) * innerHeight + 'px'; };
+sizeTrack();
 let opened = false;
-const target = () => FORCE != null ? +FORCE : opened ? clamp(scrollY / secH(), 0, N - 1) : 0;
-const go = k => scrollTo({ top: k * secH(), behavior: SETTLE || reduce ? 'auto' : 'smooth' });
-document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => go(+b.dataset.go)));
+const target = () => FORCE != null ? +FORCE : opened ? clamp(scrollY / innerHeight, 0, END) : 0;
+const scrollToT = u => scrollTo({ top: u * innerHeight, behavior: reduce ? 'auto' : 'smooth' });
+document.querySelectorAll('[data-to]').forEach(b => b.addEventListener('click', () => scrollToT(+b.dataset.to)));
 const openBtn = el('open');
 openBtn.addEventListener('click', () => {
   if (opened) return; opened = true;
   document.body.classList.remove('locked'); music.start(); musicBtn.hidden = false;
-  setTimeout(() => go(1), 60);
 });
-// enable the button once the first scenes are decoded (the rest keep loading behind the story)
 const first = [...document.querySelectorAll('#s-lane img')];
 Promise.race([Promise.all(first.map(i => i.decode ? i.decode().catch(() => {}) : 0)), new Promise(r => setTimeout(r, SETTLE ? 0 : 4000))])
   .then(() => { openBtn.disabled = false; openBtn.textContent = 'Open the invitation'; });
 
-/* ---------- geometry: map the painting onto the screen (same as object-fit: cover) ---------- */
-let Wd, Hd, S, OX, OY, U;
-const PX = f => OX + f * IW * S, PY = f => OY + f * IH * S;
-const cardWrap = el('cardWrap'), CARD = { x: .6, bottom: .565, w: .28 };
+/* ---------- 2D projective helpers (homographies) for mapping the card in perspective ---------- */
+const mul = (A, B) => A.map(r => [0, 1, 2].map(j => r[0] * B[0][j] + r[1] * B[1][j] + r[2] * B[2][j]));
+function inv(m) {
+  const [a, b, c] = m[0], [d, e, f] = m[1], [g, h, i] = m[2];
+  const A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g, det = a * A + b * B + c * C;
+  return [[A / det, -(b * i - c * h) / det, (b * f - c * e) / det], [B / det, (a * i - c * g) / det, -(a * f - c * d) / det], [C / det, -(a * h - b * g) / det, (a * e - b * d) / det]];
+}
+function sq2q(q) {   // unit square → quad [tl, tr, br, bl]
+  const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = q;
+  const sx = x0 - x1 + x2 - x3, sy = y0 - y1 + y2 - y3, dx1 = x1 - x2, dx2 = x3 - x2, dy1 = y1 - y2, dy2 = y3 - y2, den = dx1 * dy2 - dx2 * dy1;
+  const g = (sx * dy2 - dx2 * sy) / den, h = (dx1 * sy - sx * dy1) / den;
+  return [[x1 - x0 + g * x1, x3 - x0 + h * x3, x0], [y1 - y0 + g * y1, y3 - y0 + h * y3, y0], [g, h, 1]];
+}
+const rect2sq = (x, y, w, h) => [[1 / w, 0, -x / w], [0, 1 / h, -y / h], [0, 0, 1]];
+const ap = (M, [x, y]) => { const w = M[2][0] * x + M[2][1] * y + M[2][2]; return [(M[0][0] * x + M[0][1] * y + M[0][2]) / w, (M[1][0] * x + M[1][1] * y + M[1][2]) / w]; };
+const css3 = M => { const n = M[2][2]; return `matrix3d(${M[0][0] / n},${M[1][0] / n},0,${M[2][0] / n},${M[0][1] / n},${M[1][1] / n},0,${M[2][1] / n},0,0,1,0,${M[0][2] / n},${M[1][2] / n},0,1)`; };
+const lerpQ = (A, B, t) => A.map((p, i) => [lerp(p[0], B[i][0], t), lerp(p[1], B[i][1], t)]);
+
+/* ---------- geometry ---------- */
+let Wd, Hd, S, OX, OY;
+const PX = f => OX + f * IW * S, PY = f => OY + f * IH * S, P = ([x, y]) => [PX(x), PY(y)];
+// the card in her hand (fractions of the room painting): resting upright on her open palm, tipped slightly back
+const CARDQ = [[.592, .378], [.862, .356], [.878, .57], [.606, .588]];
+const PIC = [[.06, .40], [.94, .40], [.94, .945], [.06, .945]];   // painting window inside the card (card units)
 const boat = el('boat'), walkers = el('walkers');
 const fx = el('fx'), g = fx.getContext('2d'), FXR = Math.min(devicePixelRatio || 1, 1.5);
 function layout() {
   Wd = innerWidth; Hd = innerHeight; S = Math.max(Wd / IW, Hd / IH); OX = (Wd - IW * S) / 2; OY = (Hd - IH * S) / 2;
-  U = CARD.w * IW * S / 136;
-  document.documentElement.style.setProperty('--u', U + 'px');
-  cardWrap.style.left = PX(CARD.x) + 'px'; cardWrap.style.top = (PY(CARD.bottom) - 178 * U) + 'px';
-  fx.width = Math.round(Wd * FXR); fx.height = Math.round(Hd * FXR);
+  fx.width = Math.round(Wd * FXR); fx.height = Math.round(Hd * FXR); sizeTrack();
 }
 layout(); addEventListener('resize', layout);
-// place a sprite: centre (fxp, fyp) in painting fractions, height as a fraction of the painting height
 function sprite(img, fxp, fyp, hf, rot = 0) {
   if (!img.naturalWidth) return;
   const h = hf * IH * S, w = h * img.naturalWidth / img.naturalHeight;
@@ -78,8 +93,10 @@ function sprite(img, fxp, fyp, hf, rot = 0) {
   img.style.transformOrigin = `${w / 2}px ${h / 2}px`;
   img.style.transform = `translate(${PX(fxp) - w / 2}px, ${PY(fyp) - h / 2}px) rotate(${rot}deg)`;
 }
+const tpl = el('faceTpl');
+document.querySelectorAll('#cardFace .fr').forEach(fr => fr.appendChild(tpl.content.cloneNode(true)));
 
-/* ---------- light effects: stars, fireflies, water glitter, dust motes, rose petals ---------- */
+/* ---------- light effects ---------- */
 const mk = (n, f) => Array.from({ length: n }, f);
 const STARS = mk(46, () => ({ x: rand(.3, .72), y: rand(.02, .3), r: rand(.6, 1.6), ph: rand(0, 6.3), sp: rand(1, 2.5) }));
 const FIRE = mk(26, () => ({ x: rand(.05, .95), y: rand(.35, .95), ph: rand(0, 6.3), sp: rand(.2, .5), r: rand(1.5, 3) }));
@@ -88,129 +105,135 @@ const DUST = mk(34, () => ({ x: rand(.2, .9), y: rand(0, .6), ph: rand(0, 6.3), 
 const PET = mk(26, () => ({ x: rand(0, 1), y: rand(-1, 1), vy: rand(.035, .07), sw: rand(.01, .03), ph: rand(0, 6.3), rot: rand(0, 6.3), vr: rand(-1.5, 1.5), s: rand(5, 9), c: ['#c8102e', '#e0475f', '#f28aa0', '#a50d26'][Math.floor(rand(0, 4))] }));
 function drawFx(t, dt, w) {
   g.setTransform(FXR, 0, 0, FXR, 0, 0); g.clearRect(0, 0, Wd, Hd);
-  if (w.stars > .01) {                         // twinkling stars over the lane (they follow the zoom)
-    const { z, ox, oy } = w.laneZ; g.fillStyle = '#fffbe8';
+  if (w.stars > .01) { const { z, ox, oy, tx, ty } = w.lane; g.fillStyle = '#fffbe8';
     STARS.forEach(s => { g.globalAlpha = w.stars * (.35 + .65 * Math.max(0, Math.sin(t * s.sp + s.ph)));
-      g.beginPath(); g.arc(ox + (PX(s.x) - ox) * z, oy + (PY(s.y) - oy) * z, s.r, 0, 6.283); g.fill(); });
-  }
-  if (w.fire > .01) {                          // warm fireflies drifting over the ghat
-    g.globalAlpha = 1;
+      g.beginPath(); g.arc(tx + ox + (PX(s.x) - ox) * z, ty + oy + (PY(s.y) - oy) * z, s.r, 0, 6.283); g.fill(); }); }
+  if (w.fire > .01) { g.globalAlpha = 1;
     FIRE.forEach(f => { f.y -= f.sp * dt * .02; if (f.y < .3) f.y = .98;
       const x = (f.x + Math.sin(t * .6 + f.ph) * .02) * Wd, y = f.y * Hd + w.fireY, a = w.fire * (.4 + .6 * Math.max(0, Math.sin(t * 1.7 + f.ph)));
       const gr = g.createRadialGradient(x, y, 0, x, y, f.r * 5); gr.addColorStop(0, `rgba(255,225,140,${a})`); gr.addColorStop(1, 'rgba(255,190,80,0)');
-      g.fillStyle = gr; g.beginPath(); g.arc(x, y, f.r * 5, 0, 6.283); g.fill(); });
-  }
-  if (w.glit > .01) {                          // sun glitter on the river
-    g.strokeStyle = '#ffffff'; g.fillStyle = '#ffffff'; g.lineWidth = 1;
-    GLIT.forEach(p => { p.y += dt * .015; if (p.y > 1.02) p.y = -.02;
+      g.fillStyle = gr; g.beginPath(); g.arc(x, y, f.r * 5, 0, 6.283); g.fill(); }); }
+  if (w.glit > .01) { g.strokeStyle = '#fff'; g.fillStyle = '#fff'; g.lineWidth = 1;
+    GLIT.forEach(p => { p.y += dt * (.015 + Math.min(w.flow, 1) * .08); if (p.y > 1.02) p.y = -.02;
       const a = w.glit * Math.pow(Math.max(0, Math.sin(t * p.sp + p.ph)), 3); if (a < .02) return;
       const x = p.x * Wd, y = p.y * Hd, s = p.s * (.5 + a);
       g.globalAlpha = a; g.beginPath(); g.moveTo(x - s, y); g.lineTo(x + s, y); g.moveTo(x, y - s); g.lineTo(x, y + s); g.stroke();
-      g.beginPath(); g.arc(x, y, 1.3, 0, 6.283); g.fill(); });
-  }
-  if (w.dust > .01) {                          // dust motes in the lamplight of her room
-    g.fillStyle = '#ffe2a6';
+      g.beginPath(); g.arc(x, y, 1.3, 0, 6.283); g.fill(); }); }
+  if (w.dust > .01) { g.fillStyle = '#ffe2a6';
     DUST.forEach(d => { d.y -= d.vy * dt; if (d.y < -.02) d.y = .62;
       g.globalAlpha = w.dust * (.3 + .5 * Math.max(0, Math.sin(t + d.ph)));
-      g.beginPath(); g.arc((d.x + Math.sin(t * .3 + d.ph) * .02) * Wd, d.y * Hd, d.r, 0, 6.283); g.fill(); });
-  }
-  if (w.pet > .01) {                           // rose petals drifting down over the arch and the swing
+      g.beginPath(); g.arc((d.x + Math.sin(t * .3 + d.ph) * .02) * Wd, d.y * Hd, d.r, 0, 6.283); g.fill(); }); }
+  if (w.pet > .01) {
     PET.forEach(p => { p.y += p.vy * dt; p.rot += p.vr * dt; if (p.y > 1.05) { p.y = -.05; p.x = rand(0, 1); }
-      g.globalAlpha = w.pet * .9; g.fillStyle = p.c; g.save();
+      g.globalAlpha = Math.min(1, w.pet) * .9; g.fillStyle = p.c; g.save();
       g.translate((p.x + Math.sin(t * .9 + p.ph) * p.sw) * Wd, p.y * Hd); g.rotate(p.rot); g.scale(1, .55 + .45 * Math.sin(t * 2 + p.ph));
-      g.beginPath(); g.ellipse(0, 0, p.s, p.s * .62, 0, 0, 6.283); g.fill(); g.restore(); });
-  }
+      g.beginPath(); g.ellipse(0, 0, p.s, p.s * .62, 0, 0, 6.283); g.fill(); g.restore(); }); }
   g.globalAlpha = 1;
 }
 
 /* ---------- per-frame composition ---------- */
 const sc = { lane: el('s-lane'), room: el('s-room'), river: el('s-river'), ghat: el('s-ghat'), arch: el('s-arch'), events: el('s-events'), finale: el('s-finale') };
-const kbs = Object.values(sc).map(s => s.querySelector('.kb'));
+const kbs = [...document.querySelectorAll('.kb')].filter(k => k.id !== 'riverKb');
+const riverKb = el('riverKb');
 const show = (e, op, tf = '') => { e.style.opacity = op; e.style.visibility = op > .001 ? 'visible' : 'hidden'; e.style.transform = tf; };
 const copy = (e, op, ty = 0) => { e.style.opacity = op; e.style.visibility = op > .01 ? 'visible' : 'hidden'; e.style.transform = `translate(-50%, ${ty}px)`; };
-const gate = el('gate'), laneNight = el('laneNight'), keep = el('keep'), cEvents = el('c-events');
-const flap = cardWrap.querySelector('.env-flap'), envs = cardWrap.querySelectorAll('.env-back, .env-front, .env-flap'), cardMove = el('cardMove'), cardBot = cardWrap.querySelector('.card-bot');
-let dp = 0, envT = 0, walkT = 0, last = performance.now(), lastScene = 0;
+const gate = el('gate'), laneNight = el('laneNight'), keep = el('keep'), card = el('cardFace'), pn1 = el('pn1'), pn3 = el('pn3');
+const evs = [...document.querySelectorAll('.ev')], shadow = el('cardShadow');
+let dp = 0, last = performance.now(), lastMove = performance.now(), rustled = false;
 
 function frame() {
   const now = performance.now(), dt = clamp((now - last) / 1000, 0, .05), t = now / 1000; last = now;
-  const tg = target();
-  dp = SETTLE || reduce ? tg : dp + (tg - dp) * (1 - Math.exp(-dt * 2.2));
-  if (Math.abs(tg - dp) < .0008) dp = tg;
-  const scene = Math.round(dp);
-  if (scene !== lastScene && Math.abs(dp - scene) < .05) { lastScene = scene; if (opened) (scene === 3 ? rustle : chime)(); }
+  const tg = target(), prev = dp;
+  dp = SETTLE || reduce ? tg : dp + (tg - dp) * (1 - Math.exp(-dt * 9));     // light smoothing; still follows your finger
+  if (Math.abs(tg - dp) < .0005) dp = tg;
+  if (Math.abs(dp - prev) > .0004) lastMove = now;
+  const laneDusk = el('laneDusk');
 
-  // a slow, barely-there drift keeps every painting alive while you rest on it
-  if (!reduce) kbs.forEach((k, i) => { k.style.transform = `scale(${(1.025 + .02 * Math.sin(t * .11 + i * 1.7)).toFixed(4)}) translate(${(Math.sin(t * .07 + i) * .6).toFixed(2)}%, ${(Math.cos(t * .09 + i) * .4).toFixed(2)}%)`; });
+  if (!reduce) kbs.forEach((k, i) => { k.style.transform = `scale(${(1.025 + .02 * Math.sin(t * .11 + i * 1.7)).toFixed(4)}) translate(${(Math.sin(t * .07 + i) * .5).toFixed(2)}%, ${(Math.cos(t * .09 + i) * .35).toFixed(2)}%)`; });
+  gate.classList.toggle('gone', opened);
 
-  show(gate, opened ? 1 - sstep(.02, .45, dp) : 1); gate.style.pointerEvents = opened ? 'none' : 'auto';
-
-  /* 1–2 · the lane: sunset → moonlight (her shutters are open in the night painting); then we fly into her window */
-  const night = sstep(1.08, 1.9, dp), lz = 1 + .05 * sstep(1, 2, dp) + 2.3 * ein(sstep(2.06, 2.95, dp)), lox = PX(.8), loy = PY(.47);
-  sc.lane.style.transformOrigin = `${lox}px ${loy}px`;
-  const laneOp = sstep(.1, .6, dp) * (1 - sstep(2.72, 2.97, dp));
-  const lc = ein(sstep(2.06, 2.95, dp));
-  show(sc.lane, laneOp, `translate(${(Wd / 2 - lox) * lc}px, ${(Hd * .45 - loy) * lc}px) scale(${lz})`);
+  /* ── lane: sunset → (dusk) → night, then the dive into her window ── */
+  let night;
+  if (laneDusk) { laneDusk.style.opacity = ss(.5, 1.25, dp); night = ss(1.2, 1.95, dp); }
+  else night = ss(.5, 1.95, dp);
   laneNight.style.opacity = night;
-  const o1 = sstep(.45, .9, dp) * (1 - sstep(1.1, 1.35, dp)), o2 = sstep(1.72, 1.97, dp) * (1 - sstep(2.1, 2.32, dp));
-  copy(el('c-names'), o1); copy(el('c-hint'), o1); copy(el('c-bless'), o2); copy(el('c-couple'), o2);
+  const dive = eio(ss(2.9, 3.8, dp)), lz = 1 + .06 * ss(.3, 2.9, dp) + 2.3 * dive * dive, lox = PX(.8), loy = PY(.47);
+  const ltx = (Wd / 2 - lox) * dive, lty = (Hd * .45 - loy) * dive;
+  sc.lane.style.transformOrigin = `${lox}px ${loy}px`;
+  const laneOp = 1 - ss(3.55, 3.8, dp);
+  show(sc.lane, laneOp, `translate(${ltx}px, ${lty}px) scale(${lz})`);
+  copy(el('c-names'), 1 - ss(.45, .85, dp)); copy(el('c-hint'), opened ? 1 - ss(.05, .4, dp) : 0);
+  const bl = ss(1.85, 2.15, dp) * (1 - ss(2.75, 2.95, dp));
+  copy(el('c-bless'), bl, (1 - ss(1.85, 2.15, dp)) * 20); copy(el('c-couple'), bl, (1 - ss(1.9, 2.25, dp)) * 30);
 
-  /* 3 · her room: the envelope opens and the card unfolds above her hand; 3→4 we dive into the card's painting */
-  const roomOp = sstep(2.6, 2.92, dp) * (1 - sstep(3.5, 3.82, dp));
-  show(sc.room, roomOp, `scale(${1.14 - .14 * sstep(2.6, 3, dp)})`);
-  if (dp > 2.8) envT = Math.min(1, envT + dt / 3.4); else if (dp < 2.4) envT = 0;
-  if (SETTLE && dp >= 2.99) envT = 1;
-  envT = Math.max(envT, sstep(3, 3.12, dp));
-  const ca = sstep(0, .2, envT), cb = sstep(.18, .52, envT), cc = sstep(.5, .7, envT), cd = sstep(.64, 1, envT);
-  flap.style.transform = `rotateX(${ca * 180}deg)`; flap.style.zIndex = ca > .5 ? 0 : 4;
-  cardMove.style.transform = `translateY(${(1 - eio(cb)) * 150 * U}px)`;
-  envs.forEach(e => { e.style.opacity = 1 - cc; e.style.translate = `0 ${eio(cc) * 170 * U}px`; });
-  cardBot.style.transform = `rotateX(${(1 - eio(cd)) * 180}deg)`;
-  const z = eio(sstep(3.04, 3.9, dp)), cover = Math.max(Wd / (124 * U), Hd / (83 * U)) * 1.05;
-  const cl = el('cardLayer'), co = sstep(2.72, 2.95, dp) * (1 - sstep(3.93, 3.995, dp));
-  cl.style.visibility = co > .001 ? 'visible' : 'hidden'; cl.style.opacity = co;
-  const pcx = PX(CARD.x) + 68 * U, pcy = PY(CARD.bottom) - 178 * U + 130.5 * U;
-  cardWrap.style.transform = `translate(${(Wd / 2 - pcx) * z}px, ${(Hd / 2 - pcy) * z}px) rotate(${-4 * (1 - z) + Math.sin(t * .8) * .6 * (1 - z)}deg) scale(${Math.exp(Math.log(cover) * z)})`;
+  /* ── her room: the folded card opens on her palm; then we fly into its painting ── */
+  const zoom = eio(ss(5.0, 6.0, dp));
+  const u = ss(3.95, 4.75, dp);                                  // unfold: bottom flap down, then top flap up
+  const drop = (1 - eio(ss(0, .6, u))) * .072;                   // folded, it rests in her palm; it rises as it opens
+  const cq = CARDQ.map(([x, y]) => P([x, y + drop])), Hc = sq2q(cq);
+  const picQ = PIC.map(p => ap(Hc, p));                          // the painting window on screen
+  const scr = [[0, 0], [Wd, 0], [Wd, Hd], [0, Hd]];
+  const Qz = lerpQ(picQ, scr, zoom);                             // where the painting is right now
+  const Hz = mul(sq2q(Qz), inv(sq2q(picQ)));                     // the whole room moves with it
+  const pre = 1 + .12 * (1 - ss(3.55, 4.0, dp));                 // the room settles in after the dive
+  const cx = PX(.72), cy = PY(.47), Pre = [[pre, 0, cx * (1 - pre)], [0, pre, cy * (1 - pre)], [0, 0, 1]];
+  const HR = mul(Hz, Pre);
+  const roomOp = ss(3.55, 3.8, dp) * (1 - ss(5.95, 6.05, dp));
+  show(sc.room, roomOp, css3(HR));
+  const cardOp = ss(3.75, 3.95, dp) * (1 - ss(5.95, 6.05, dp));
+  card.style.visibility = cardOp > .001 ? 'visible' : 'hidden'; card.style.opacity = cardOp;
+  const cqs = cq.map(p => ap(HR, p));
+  card.style.transform = css3(mul(sq2q(cqs), rect2sq(0, 0, 600, 800)));
+  // soft contact shadow where the card meets her fingers
+  const fold = 1 - eio(ss(0, .5, u)), bx = (cqs[2][0] + cqs[3][0]) / 2, by = lerp((cqs[2][1] + cqs[3][1]) / 2, (cqs[1][1] + cqs[2][1]) / 2 * .33 + (cqs[2][1] + cqs[3][1]) / 2 * .67, fold * 0);
+  const bw = Math.hypot(cqs[2][0] - cqs[3][0], cqs[2][1] - cqs[3][1]);
+  shadow.style.opacity = cardOp * (1 - zoom) * .55; shadow.style.width = bw * .9 + 'px'; shadow.style.height = bw * .16 + 'px';
+  shadow.style.transform = `translate(${bx - bw * .45}px, ${by - bw * .06}px) rotate(${Math.atan2(cqs[2][1] - cqs[3][1], cqs[2][0] - cqs[3][0])}rad)`;
+  pn3.style.transform = `translateZ(1px) rotateX(${(1 - eio(ss(0, .5, u))) * 180}deg)`;
+  pn1.style.transform = `translateZ(.5px) rotateX(${-(1 - eio(ss(.45, 1, u))) * 180}deg)`;
+  if (u > .55 && !rustled && opened) { rustled = true; rustle(); } if (u < .1) rustled = false;
+  const live = dp > 3.75;
 
-  /* 4 · the river from above; the boat drifts up and away */
-  const riverOp = sstep(3.72, 3.93, dp) * (1 - sstep(4.6, 4.86, dp));
-  show(sc.river, riverOp);
-  sprite(boat, .5 + Math.sin(t * .5) * .006, lerp(.6, .52, sstep(3.7, 4, dp)) - 1.0 * ein(sstep(4.04, 4.95, dp)) + Math.sin(t * 1.3) * .003, .32, Math.sin(t * .8) * 2);
+  /* ── the river lives inside the card's painting window, then fills the screen (stays sharp) ── */
+  const picAspect = Math.hypot(picQ[1][0] - picQ[0][0], picQ[1][1] - picQ[0][1]) / Math.hypot(picQ[3][0] - picQ[0][0], picQ[3][1] - picQ[0][1]);
+  const r0h = Wd / picAspect, R0y = Hd * .5 - r0h / 2;
+  const Rz = [0, lerp(R0y, 0, zoom), Wd, lerp(r0h, Hd, zoom)];
+  const mapped = zoom < .999;
+  const rv = ss(.3, .55, u); card.style.setProperty('--picA', (1 - rv).toFixed(3));
+  const riverOp = live ? (zoom > 0 ? 1 : cardOp * rv) * (1 - ss(7.5, 7.9, dp)) : 0;
+  show(sc.river, riverOp, mapped ? css3(mul(sq2q(Qz), rect2sq(...Rz))) : '');
+  sc.river.style.clipPath = mapped ? `inset(${Rz[1]}px 0 ${Hd - Rz[1] - Rz[3]}px 0)` : 'none';
+  const flow = ss(6.0, 7.6, dp);
+  riverKb.style.transform = `translateY(${(flow * 9 - 4.5).toFixed(2)}%) scale(1.12)`;
+  sprite(boat, .5 + Math.sin(t * .5) * .005, .53 - 1.05 * Math.pow(flow, 1.6) + Math.sin(t * 1.3) * .003, .3, Math.sin(t * .8) * 1.6);
 
-  /* 5 · the ghat at night; 5→6, 6→7, 7→8 pan upward like turning pages */
-  const pan = a => eio(sstep(a + .05, a + .95, dp));
-  const p5 = pan(5), p6 = pan(6), p7 = pan(7);
-  const ghatOp = sstep(4.55, 4.85, dp) * (p5 < 1 ? 1 : 0);
-  show(sc.ghat, ghatOp, `translateY(${-p5 * Hd}px) scale(${1.1 - .1 * sstep(4.5, 5, dp)})`);
-  copy(el('c-await'), sstep(4.82, 5, dp) * (1 - sstep(5.04, 5.25, dp)), -p5 * Hd);
-
-  const archOn = p5 > 0 && p6 < 1;
-  show(sc.arch, archOn ? 1 : 0, `translateY(${(1 - p5) * Hd - p6 * Hd}px)`);
-  if (dp > 5.85) walkT = Math.min(1, walkT + dt / 5.5); else if (dp < 5.3) walkT = 0;
-  if (SETTLE && dp >= 5.99) walkT = 1;
-  const w = eio(walkT), moving = walkT > 0 && walkT < 1, bob = moving ? Math.abs(Math.sin(t * 4.6)) * .004 : 0;
-  sprite(walkers, .5, lerp(.83, .66, w) - bob, lerp(.4, .15, w), moving ? Math.sin(t * 4.6) * .8 : 0);
-  copy(el('c-explore'), sstep(.45, .85, walkT) * (1 - sstep(6.02, 6.2, dp)) * (p5 > .98 ? 1 : 0));
-
-  show(sc.events, p6 > 0 && p7 < 1 ? 1 : 0, `translateY(${(1 - p6) * Hd - p7 * Hd}px)`);
-  copy(cEvents, p6 > 0 && p7 < 1 ? 1 : 0, (1 - p6) * Hd - p7 * Hd);
-  cEvents.classList.toggle('in', p6 > .7);
-
-  show(sc.finale, p7 > 0 ? 1 : 0, `translateY(${(1 - p7) * Hd}px)`);
-  copy(el('c-finale'), sstep(.55, 1, p7), (1 - p7) * Hd * .6);
+  /* ── the ghat, then the page scrolls on: arch → celebrations → finale ── */
+  const ghIn = ss(7.5, 7.9, dp), p1 = eio(ss(8.6, 9.6, dp)), p2 = eio(ss(11.0, 12.0, dp)), p3 = eio(ss(12.9, 13.9, dp));
+  show(sc.ghat, ghIn * (p1 < 1 ? 1 : 0), `translateY(${-p1 * Hd}px) scale(${1.1 - .1 * ghIn})`);
+  copy(el('c-await'), ss(7.75, 8.0, dp), -p1 * Hd + (1 - ss(7.75, 8.0, dp)) * 30);
+  const archOn = p1 > 0 && p2 < 1;
+  show(sc.arch, archOn ? 1 : 0, `translateY(${(1 - p1) * Hd - p2 * Hd}px)`);
+  const w = eio(ss(9.3, 10.8, dp)), step = Math.sin(dp * 46), walking = w > 0 && w < 1;
+  sprite(walkers, .5, lerp(.86, .66, w) - (walking ? Math.abs(step) * .004 : 0), lerp(.42, .15, w), walking ? step * .7 : 0);
+  copy(el('c-explore'), ss(10.4, 10.7, dp), -p2 * Hd);
+  show(sc.events, p2 > 0 && p3 < 1 ? 1 : 0, `translateY(${(1 - p2) * Hd - p3 * Hd}px)`);
+  copy(el('c-events'), p2 > 0 && p3 < 1 ? 1 : 0, (1 - p2) * Hd - p3 * Hd);
+  evs.forEach((e, i) => { const a = ss(11.55 + i * .18, 11.85 + i * .18, dp); e.style.opacity = a; e.style.transform = `translateY(${(1 - a) * 26}px)`; });
+  show(sc.finale, p3 > 0 ? 1 : 0, `translateY(${(1 - p3) * Hd}px)`);
+  copy(el('c-finale'), ss(13.45, 13.9, dp), (1 - ss(13.3, 13.9, dp)) * 40);
 
   drawFx(t, dt, {
-    stars: laneOp * night, laneZ: { z: lz, ox: lox, oy: loy },
-    dust: roomOp, glit: riverOp,
-    fire: ghatOp * (1 - p5), fireY: -p5 * Hd,
-    pet: (archOn ? (1 - p6) * p5 : 0) + p7,
+    stars: laneOp * night, lane: { z: lz, ox: lox, oy: loy, tx: ltx, ty: lty },
+    dust: roomOp * (1 - zoom), glit: riverOp * ss(.95, 1, zoom), flow: Math.abs(dp - prev) / Math.max(dt, .001) * .3,
+    fire: ghIn * (1 - p1), fireY: -p1 * Hd,
+    pet: (archOn ? p1 * (1 - p2) : 0) + p3,
   });
 
-  keep.classList.toggle('on', opened && dp > .95 && dp < 7.05 && Math.abs(dp - tg) < .01 && Math.abs(tg - Math.round(tg)) < .01 && tg !== 5 && tg !== 1 && tg !== 6);
+  keep.classList.toggle('on', opened && dp < END - .2 && now - lastMove > 1600 && !(dp > 7.7 && dp < 8.7));
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__state = () => JSON.stringify({ dp: +dp.toFixed(3), envT: +envT.toFixed(2), walkT: +walkT.toFixed(2), opened });
+window.__state = () => JSON.stringify({ dp: +dp.toFixed(3), opened });
 
 /* ---------- countdown to the Holud ---------- */
 const target0 = new Date('2026-12-30T15:00:00+06:00').getTime();

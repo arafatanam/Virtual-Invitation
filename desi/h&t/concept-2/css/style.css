@@ -1,12 +1,12 @@
 /* Hamza & Tahia — concept 2: an illustrated story told in eight scenes, one swipe per scene. */
 :root { --u: 1px; --serif: 'Cormorant Garamond', Georgia, serif; --script: 'Great Vibes', cursive; --caps: 'Marcellus', serif; --green: #1f5d4c; color-scheme: light; }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { background: #f4ecdf; scroll-snap-type: y mandatory; }
+html { background: #f4ecdf; }
 body { margin: 0; font-family: var(--serif); color: #3b2a1e; -webkit-font-smoothing: antialiased; font-variant-numeric: lining-nums; }
 body.locked { overflow: hidden; height: 100svh; }
 p, h2, h3 { margin: 0; }
 
-#track > div { height: 100svh; scroll-snap-align: start; scroll-snap-stop: always; }
+#track { width: 1px; }
 #stage { position: fixed; inset: 0; overflow: hidden; background: #f4ecdf; }
 .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; visibility: hidden; will-change: transform, opacity; }
 .kb { position: absolute; inset: 0; will-change: transform; }
@@ -15,21 +15,28 @@ p, h2, h3 { margin: 0; }
 #laneNight { opacity: 0; }
 #fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 
-/* ---------- the envelope and folded card ---------- */
-#cardLayer { position: absolute; inset: 0; pointer-events: none; visibility: hidden; }
-#cardWrap { position: absolute; width: calc(136 * var(--u)); height: calc(178 * var(--u)); transform-origin: calc(68 * var(--u)) calc(130.5 * var(--u)); will-change: transform; }
-#cardMove { position: absolute; inset: 0; perspective: calc(600 * var(--u)); z-index: 2; }
-.card-top, .card-bot { position: absolute; left: 0; width: 100%; height: 50%; background: #fbf7ee; }
-.card-top { top: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(6 * var(--u)); box-shadow: 0 calc(2 * var(--u)) calc(8 * var(--u)) rgba(60,30,10,.25); }
-.card-top p { font: italic 500 calc(15 * var(--u)) / 1.2 var(--serif); color: #4b5a3a; text-align: center; }
-.card-top .vine { width: calc(84 * var(--u)); height: calc(12 * var(--u)); }
-.card-bot { top: 50%; transform-origin: top center; backface-visibility: hidden; padding: calc(6 * var(--u)); padding-top: 0; box-shadow: 0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(60,30,10,.25); }
-.card-bot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.env-back, .env-front, .env-flap { position: absolute; left: calc(-7 * var(--u)); top: calc(142 * var(--u)); width: calc(150 * var(--u)); height: calc(104 * var(--u)); }
-.env-back { background: #d9c7a6; z-index: 1; }
-.env-front { z-index: 3; background: linear-gradient(160deg, #f6eedf, #e6d6bb); clip-path: polygon(0 18%, 50% 62%, 100% 18%, 100% 100%, 0 100%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: calc(12 * var(--u)); }
-.env-front span { font: 400 calc(18 * var(--u)) var(--script); color: #9a6a2a; }
-.env-flap { z-index: 4; height: calc(62 * var(--u)); background: linear-gradient(#efe3cc, #dcc8a5); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; }
+/* ---------- the folded card (drawn flat at 600×800, mapped onto her hand with matrix3d) ---------- */
+.mapped { transform-origin: 0 0; }
+.mapped > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+#cardFace { position: absolute; left: 0; top: 0; width: 600px; height: 800px; transform-origin: 0 0; transform-style: preserve-3d; visibility: hidden; will-change: transform; }
+.pn { position: absolute; left: 0; width: 600px; height: 266.67px; transform-style: preserve-3d; }
+#pn1 { top: 0; transform-origin: 50% 100%; } #pn2 { top: 266.67px; } #pn3 { top: 533.33px; transform-origin: 50% 0; }
+.pn .fr, .pn .bk { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.pn .fr { background: transparent; }
+.pn .bk { background: #f6eedf; }
+.pn .bk { transform: rotateX(180deg); background: linear-gradient(160deg, #f8f1e3, #e9dcc4); display: flex; align-items: center; justify-content: center; }
+#pn1 .bk { align-items: flex-end; }
+.seal { width: 92px; height: 92px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 400 34px var(--script); color: #fff4dc;
+  background: radial-gradient(circle at 35% 30%, #c53a4a, #8e1424 70%); box-shadow: 0 3px 8px rgba(80,10,20,.45), inset 0 0 0 5px rgba(255,255,255,.12); }
+.face { position: absolute; left: 0; width: 600px; height: 800px; display: flex; flex-direction: column; align-items: center; }
+.face > svg, .face > p { position: relative; z-index: 1; }
+#pn2 .face { top: -266.67px; } #pn3 .face { top: -533.33px; }
+.face .vine { width: 220px; height: 30px; margin-top: 56px; }
+.face p { margin-top: 14px; font: italic 500 48px / 1.14 var(--serif); color: #4b5a3a; text-align: center; }
+.face .pic { position: absolute; left: 36px; right: 36px; top: 320px; bottom: 44px; overflow: hidden; box-shadow: 0 0 0 900px #fbf7ee, inset 0 0 0 1px rgba(0,0,0,.08); }
+.face .pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; display: block; }
+#cardFace .pic { background: rgba(251,247,238,var(--picA, 1)); }
+
 
 /* ---------- words ---------- */
 #ui { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
@@ -96,3 +103,10 @@ p, h2, h3 { margin: 0; }
 
 .settle .ev { transition: none; }
 @media (prefers-reduced-motion: reduce) { .gl, #keep.on { animation: none; } }
+
+/* continuous version */
+.gate { transition: opacity 1.2s cubic-bezier(.33,0,.2,1), transform 1.5s cubic-bezier(.16,1,.3,1), visibility 0s 1.2s; }
+.gate.gone { opacity: 0; visibility: hidden; transform: scale(1.04); pointer-events: none; }
+.ev { transition: none; will-change: transform, opacity; }
+#s-river { will-change: transform, clip-path; }
+#cardShadow { position: absolute; left: 0; top: 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(40,10,0,.75), rgba(40,10,0,0)); filter: blur(3px); opacity: 0; pointer-events: none; transform-origin: 0 50%; }

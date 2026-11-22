@@ -19,29 +19,34 @@
 <body class="locked">
 
 <div id="stage" aria-hidden="true">
-  <div class="scene" id="s-lane"><div class="kb"><img src="img/02-lane-day.webp" alt="" fetchpriority="high"><img id="laneNight" src="img/03-lane-night.webp" alt=""></div></div>
-  <div class="scene" id="s-room"><div class="kb"><img src="img/04-room.webp" alt=""></div></div>
-  <div class="scene" id="s-river"><div class="kb"><img src="img/05a-river-empty.webp" alt=""><img class="sprite" id="boat" src="img/05b-boat.webp" alt=""></div></div>
+  <div class="scene" id="s-lane"><div class="kb">
+    <img src="img/02-lane-day.webp" alt="" fetchpriority="high">
+    <img id="laneDusk" src="img/02b-lane-dusk.webp" alt="" onerror="this.remove()">
+    <img id="laneNight" src="img/03-lane-night.webp" alt="">
+  </div></div>
+  <div class="scene mapped" id="s-room"><img id="roomImg" src="img/04-room.webp" alt=""></div>
+  <div class="scene mapped" id="s-river"><div class="kb" id="riverKb"><img src="img/05a-river-empty.webp" alt=""><img class="sprite" id="boat" src="img/05b-boat.webp" alt=""></div></div>
+
+  <div id="cardShadow"></div>
+  <!-- the folded card: three panels that unfold in her hand; drawn flat at 600×800 and mapped onto the card in perspective -->
+  <div id="cardFace">
+    <div class="pn" id="pn1"><div class="fr"></div><div class="bk"></div></div>
+    <div class="pn" id="pn2"><div class="fr"></div></div>
+    <div class="pn" id="pn3"><div class="fr"></div><div class="bk"><span class="seal">H&amp;T</span></div></div>
+  </div>
+  <template id="faceTpl">
+    <div class="face">
+      <svg class="vine" viewBox="0 0 120 16"><path d="M4 8 Q30 -2 60 8 Q90 18 116 8" stroke="#7d8f5a" fill="none" stroke-width="1.2"/><g fill="#c2185b"><circle cx="60" cy="8" r="2.6"/><circle cx="34" cy="4" r="1.8"/><circle cx="86" cy="12" r="1.8"/></g><g fill="#7d8f5a"><ellipse cx="22" cy="6" rx="4" ry="1.6"/><ellipse cx="98" cy="10" rx="4" ry="1.6"/></g></svg>
+      <p>Join us for our<br>wedding celebrations</p>
+      <div class="pic"></div>
+    </div>
+  </template>
+
   <div class="scene" id="s-ghat"><div class="kb"><img src="img/06-ghat-night.webp" alt=""></div></div>
   <div class="scene" id="s-arch"><div class="kb"><img src="img/07-arch.webp" alt=""><img class="sprite" id="walkers" src="img/07b-couple.webp" alt=""></div></div>
   <div class="scene" id="s-events"><div class="kb"><img src="img/08-celebrations-bg.webp" alt=""></div></div>
   <div class="scene" id="s-finale"><div class="kb"><img src="img/09-finale-swing.webp" alt=""></div></div>
   <canvas id="fx"></canvas>
-
-  <div id="cardLayer">
-    <div id="cardWrap">
-      <div class="env-back"></div>
-      <div id="cardMove">
-        <div class="card-top">
-          <svg class="vine" viewBox="0 0 120 16"><path d="M4 8 Q30 -2 60 8 Q90 18 116 8" stroke="#7d8f5a" fill="none" stroke-width="1.2"/><g fill="#c2185b"><circle cx="60" cy="8" r="2.6"/><circle cx="34" cy="4" r="1.8"/><circle cx="86" cy="12" r="1.8"/></g><g fill="#7d8f5a"><ellipse cx="22" cy="6" rx="4" ry="1.6"/><ellipse cx="98" cy="10" rx="4" ry="1.6"/></g></svg>
-          <p>Join us for our<br>wedding celebrations</p>
-        </div>
-        <div class="card-bot"><img src="img/05-river.webp" alt=""></div>
-      </div>
-      <div class="env-front"><span>H &amp; T</span></div>
-      <div class="env-flap"></div>
-    </div>
-  </div>
 </div>
 
 <div id="ui">
@@ -59,8 +64,8 @@
   <div class="copy" id="c-bless"><p>With the blessings of<br>our beloved families</p></div>
   <div class="copy" id="c-couple"><p class="nm big">Hamza</p><p class="amp">&amp;</p><p class="nm big">Tahia</p><p class="sub">Chattogram · 2026–27</p></div>
 
-  <div class="copy panel" id="c-await"><h2>Our celebration<br>awaits</h2><button class="pill solid" data-go="6">Continue to the invitation ›</button></div>
-  <button class="copy pill solid" id="c-explore" data-go="7">Explore the celebrations ›</button>
+  <div class="copy panel" id="c-await"><h2>Our celebration<br>awaits</h2><button class="pill solid" data-to="9.65">Continue to the invitation ›</button></div>
+  <button class="copy pill solid" id="c-explore" data-to="12">Explore the celebrations ›</button>
 
   <div class="copy" id="c-events">
     <h2 class="script">The Celebrations</h2>
