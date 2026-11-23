@@ -22,8 +22,7 @@ The invitations are in two collections:
 | 09 | Jewel Box (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/09-jewel-box/) | A burgundy velvet box opens to a music-box melody. A faceted diamond ring rises from the satin, and each celebration swaps the stone (citrine, diamond, ruby, emerald, sapphire). |
 | 10 | Gold Foil (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/10-gold-foil/) | A luxury stationery suite. Break the gold seal and the card slides out of an emerald envelope. The gold foil catches the light as you tilt your phone, and the remaining cards are dealt out as you scroll. |
 | 11 | Royal Peacock (royal) | [open](https://arafatanam.github.io/Virtual-Invitation/desi/11-peacock/) | A Mughal peacock fan of iridescent 3D feathers sweeps open around a gold monogram medallion. Tap it and the peacock rattles its train. |
-| H&T | Hamza & Tahia | [open](https://arafatanam.github.io/Virtual-Invitation/desi/h%26t/) | A made-to-order invitation for three events in one. Ivory curtains part on tap, and as guests scroll the stage re-dresses itself for each event: blush and sage drapes with brass lanterns for the Holud, burgundy velvet under a crystal chandelier for the Reception, and ivory sheers with fairy lights for the Walima. |
-| H&T 2 | Hamza & Tahia, concept 2 | [open](https://arafatanam.github.io/Virtual-Invitation/desi/h%26t/concept-2/) | An illustrated story in eight scenes, one swipe per scene: a sunset lane where Hamza waits at his window, nightfall when Tahia's blue shutters open, an envelope that unfolds into a painting, a dive into a river, the boat arriving at the lantern-lit steps, a walk through a flower-draped Mughal arch, the three celebrations, and a closing countdown with the couple on a swing. Paintings were generated from the prompts in `concept-2/IMAGE-PROMPTS.md`; the web-ready copies are in `concept-2/img/` (originals stay local in `concept-2/images/`, which is git-ignored). |
+| H&T | Hamza & Tahia | [open](https://arafatanam.github.io/H-T-Virtual-Wedding-Card/) | Moved to its own repository, [H-T-Virtual-Wedding-Card](https://github.com/arafatanam/H-T-Virtual-Wedding-Card): "Our Story" (an illustrated, scroll-scrubbed film) and "The Card" (a curtain-reveal card). |
 
 ## Western collection
 
@@ -66,7 +65,6 @@ All names, dates and venues are placeholders.
   - desi/09 — the `lining` canvas
   - desi/11 — `faceTex`
 
-desi/h&t and desi/h&t/concept-2 have no RSVP form; their countdowns are set to the Holud. Both snap one section per swipe.
 
 ## RSVP
 
